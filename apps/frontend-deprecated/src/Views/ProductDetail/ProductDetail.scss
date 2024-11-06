@@ -1,0 +1,13 @@
+.product_detail {
+  min-height: 100vh;
+  background-color: #ffffff;
+  .container {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    @media (max-width: 992px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.loader {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  top: 0rem;
+  z-index: 10;
+  background-color: #ffffff;
+  .loader_img {
+    animation: fadeinout 4s infinite;
+    box-shadow: none;
+    border: none;
+    width: auto;
+    height: 1.5rem;
+  }
+  @keyframes fadeinout {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}

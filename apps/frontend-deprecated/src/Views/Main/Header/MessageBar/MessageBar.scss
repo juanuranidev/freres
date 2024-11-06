@@ -1,0 +1,23 @@
+.message_bar {
+  background-color: #000000;
+  text-align: center;
+  box-shadow: 0 4px 10px -10px rgb(0 0 0 / 60%);
+  padding: 0.5rem;
+  padding: 5rem 0.5rem 1rem 0.5rem;
+  .message_bar_p {
+    font-size: 0.9rem;
+    color: #ffffff;
+  }
+  .show {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 1s ease-in-out;
+  }
+  .hide {
+    opacity: 0;
+    z-index: 0;
+    position: absolute;
+    top: -100%;
+    transition: opacity 1s ease-in-out;
+  }
+}

@@ -1,0 +1,33 @@
+.tertiary_button {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  margin: 0rem 1rem;
+  border: 0.1rem solid #000000;
+  color: #000000;
+  transition: all 0.15s linear;
+  cursor: pointer;
+  &:hover {
+    background-color: #000000;
+    color: white;
+    transition: all 0.15s linear;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    @media (max-width: 992px) {
+      background-color: #eeeeee;
+      color: #000000;
+    }
+  }
+  &:active {
+    transform: scale(0.95);
+    transition: all 0.1s linear;
+  }
+}
+.tertiary_button_disabled {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  margin: 0rem 1rem;
+  border: 0.1rem solid #000000;
+  transition: all 0.15s linear;
+  cursor: pointer;
+}

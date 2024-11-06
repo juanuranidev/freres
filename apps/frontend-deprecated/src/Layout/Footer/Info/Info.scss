@@ -1,0 +1,22 @@
+.info{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media(max-width: 992px){
+        margin-bottom: 5rem;
+        width: 100%;
+    }
+    .info_img{
+        width: 6rem;
+        margin-bottom: 0.5rem;
+    }
+    .info_p{
+        margin-bottom: 0.5rem;
+        font-size: 0.8rem;
+        .info_p_a{
+            color: #000000;
+        }
+    }
+}

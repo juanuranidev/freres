@@ -1,0 +1,50 @@
+.category_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  .category_buttons_div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    @media (max-width: 992px) {
+      display: none;
+    }
+    .category_buttons_div_links {
+      display: flex;
+    }
+  }
+  .category_buttons_responsive_button {
+    display: none;
+    @media (max-width: 992px) {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+    .category_buttons_responsive_button_p {
+      margin-right: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      user-select: none;
+      -ms-user-select: none;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+    .category_buttons_responsive_button_span {
+      font-weight: 800;
+    }
+  }
+  .category_buttons_responsive_links {
+    display: none;
+    @media (max-width: 992px) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  }
+}

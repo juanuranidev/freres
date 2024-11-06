@@ -1,0 +1,88 @@
+.menuResponsive{
+    display: none;
+    @media(max-width: 992px){   
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed;
+        background-color: #eeeeee;
+        width: 50%;
+        height: 100%;
+        top: 0rem;
+        left: 0rem;
+        opacity: 1;
+        z-index: 10;
+        padding: 1rem;
+        transition: left 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        box-shadow: rgb(0 0 0 / 18%) 0px 2px 4px;
+        overflow: auto;
+        .menuResponsive_close{
+            display: flex;
+            justify-content: flex-end;
+            border-bottom: 1px solid #eeeeee;
+            width: 100%;
+            .menuResponsive_close_div{
+                div:after{
+                    display: inline-block;
+                    font-size: 3rem;
+                    content: "\00d7";
+                    cursor: pointer;
+                  }
+            }
+        }
+        .menuResponsive_ul{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            .menuResponsive_ul_li{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .menuResponsive_ul_li_a{
+                    font-size: 1rem;
+                    color: #000000;
+                    text-decoration: none;
+                    padding: 1rem;
+                    font-weight: 700;
+                }   
+                .menuResponsive_ul_li_span{
+                    font-size: 1.5rem;
+                    padding: 1rem;
+                    cursor: pointer;
+                }
+            }
+            .animated_div{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 1rem;
+                user-select: none; 
+                -ms-user-select: none;      
+                -moz-user-select: none;     
+                -khtml-user-select: none;   
+                -webkit-user-select: none;  
+                -webkit-touch-callout: none;
+            }
+        }
+        .menuResponsive_images{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            .menuResponsive_images_img{
+                width: 4rem;
+                margin: 0.25rem;
+            }
+        }
+    }
+    @media(max-width: 772px){
+        width: 60%;
+    }
+    @media(max-width: 576px){
+        width: 100%;
+    }
+}
+.menuClose{
+    @extend .menuResponsive;
+    left: -100%;
+    opacity: 0;   
+}

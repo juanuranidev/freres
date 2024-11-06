@@ -1,0 +1,23 @@
+.show_products_button {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid #000000;
+  transition: all 0.15s linear;
+  margin: 0rem 0.5rem 1.5rem 0.5rem;
+  z-index: 2;
+  cursor: pointer;
+  @media (max-width: 576px) {
+    width: 40%;
+    margin: 0rem 0rem 1.5rem 0rem;
+  }
+  &:active {
+    transform: scale(0.95);
+    transition: all 0.1s linear;
+  }
+}
+
+.selected {
+  color: #ffffff;
+  background-color: #000000;
+}

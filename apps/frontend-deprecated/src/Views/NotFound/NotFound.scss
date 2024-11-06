@@ -1,0 +1,22 @@
+.not_found {
+  display: flex;
+  justify-content: center;
+  padding: 8rem 0rem 0rem 0rem;
+  min-height: 100vh;
+  .not_found_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .not_found_div_h2 {
+      margin-bottom: 2.5rem;
+      font-size: 1.5rem;
+      &:first-child {
+        margin-bottom: 1.5rem;
+      }
+    }
+    .secondaryButton {
+      padding: 1rem;
+    }
+  }
+}

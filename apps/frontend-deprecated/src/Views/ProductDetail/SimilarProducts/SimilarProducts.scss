@@ -1,0 +1,12 @@
+.similar_products {
+  padding-top: 5rem;
+  text-align: center;
+  .similar_products_h2 {
+    margin-bottom: 5rem;
+  }
+  .similar_products_div {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

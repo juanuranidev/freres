@@ -1,0 +1,22 @@
+.shortcuts_gallery {
+  padding: 5rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  @media (max-width: 576px) {
+    flex-direction: column;
+    padding: 5rem 0rem 0rem 0rem;
+  }
+  .shortcuts_gallery_a {
+    width: 33%;
+    @media (max-width: 576px) {
+      width: 99%;
+      margin-bottom: 1%;
+    }
+    &:last-child {
+      @media (max-width: 576px) {
+        margin-bottom: 5rem;
+      }
+    }
+  }
+}
