@@ -33,14 +33,6 @@ const carouselItems = [
         image:
           "https://freres.ar/wp-content/uploads/2024/10/FRERES-ESHOP-SS25_0091-1280x1920.jpg",
       },
-      {
-        id: 3,
-        name: "Privado: Mocasin Antifaz",
-        price: null,
-        originalPrice: null,
-        image:
-          "https://freres.ar/wp-content/uploads/2024/10/FRERES-ESHOP-SS25_0091-1280x1920.jpg",
-      },
     ],
   },
   {
