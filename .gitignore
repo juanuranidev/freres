@@ -1,8 +1,10 @@
 # dependencies
-/node_modules
+*node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+
+*dist
 
 # testing
 /coverage
@@ -17,6 +19,8 @@
 # misc
 .DS_Store
 *.pem
+
+*postgres_data
 
 # debug
 npm-debug.log*
