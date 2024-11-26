@@ -1,0 +1,16 @@
+export const SIZES_SEED: { name: string }[] = [
+    { name: 'S' },
+    { name: 'M' },
+    { name: 'L' },
+    { name: 'XL' },
+    { name: 'XXL' },
+    { name: "38" },
+    { name: "39" },
+    { name: "40" },
+    { name: "41" },
+    { name: "42" },
+    { name: "43" },
+    { name: "44" },
+    { name: "45" },
+    { name: "46" },
+];
