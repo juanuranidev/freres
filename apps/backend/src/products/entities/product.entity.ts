@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
 import { ProductImage } from './product-images.entity';
+import { OutfitProducts } from '../../outfits/entities/outfit-products.entity';
 
 @Entity({ name: 'products' })
 export class Product {
@@ -12,10 +13,10 @@ export class Product {
     @Column('numeric', { precision: 10, scale: 2 })
     price: number;
 
-    @Column('timestamp')
+    @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
 
-    @Column('timestamp')
+    @Column('timestamp', { default: () => 'CURRENT_TIMESTAMP' })
     updatedAt: Date;
 
     @Column('int')
@@ -31,4 +32,12 @@ export class Product {
         eager: true,
     })
     images: ProductImage[];
+
+    @OneToMany(() => OutfitProducts, (outfitProducts) => outfitProducts.product)
+    outfitProducts: OutfitProducts[];
+
+    @BeforeInsert()
+    async generateSlug() {
+        this.slug = this.title.toLowerCase().replace(/ /g, '-');
+    }
 }
