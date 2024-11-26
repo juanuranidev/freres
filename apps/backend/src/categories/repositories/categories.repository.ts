@@ -17,11 +17,6 @@ export class CategoriesRepository {
         return await this.categoryRepository.insert(createCategoryDto);
     }
 
-    async create(createCategoryDto: CreateCategoryDto) {
-        const category = this.categoryRepository.create(createCategoryDto);
-        return await this.categoryRepository.save(category);
-    }
-
     async readByName(name: string) {
         return await this.categoryRepository.findOne({ where: { name } });
     }

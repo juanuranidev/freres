@@ -19,15 +19,6 @@ export class CategoriesService {
     }
   }
 
-  async create(createCategoryDto: CreateCategoryDto) {
-    try {
-      return await this.categoriesRepository.create(createCategoryDto);
-    } catch (error) {
-      this.logger.error(`Failed to create category: ${error.message}`);
-      throw new InternalServerErrorException('Failed to create category');
-    }
-  }
-
   async readByName(name: string) {
     try {
       return await this.categoriesRepository.readByName(name);
