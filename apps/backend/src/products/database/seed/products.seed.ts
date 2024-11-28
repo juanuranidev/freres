@@ -1,3 +1,5 @@
+
+
 // Categories availables:
 // name: "PRIMAVERA VERANO '25",
 // name: "Remeras"
@@ -12,6 +14,7 @@
 // name: "Accesorios"
 // name: "Nuevos Ingresos"
 // name: "Otoño Invierno '24"
+
 
 
 // Sizes availables:
