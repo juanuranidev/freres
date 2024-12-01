@@ -9,5 +9,5 @@ export class CreateOutfitDto {
     @IsArray()
     @IsNotEmpty()
     @IsString({ each: true })
-    product_names: string[]
+    products: string[]
 }

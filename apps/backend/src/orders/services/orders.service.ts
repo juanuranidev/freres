@@ -12,9 +12,9 @@ export class OrdersService {
 
   constructor(private readonly ordersRepository: OrdersRepository) { }
 
-  async create(createOrderDto: CreateOrderDto) {
+  async create(createOrderDto: CreateOrderDto): Promise<void> {
     try {
-      return await this.ordersRepository.create(createOrderDto);
+      await this.ordersRepository.create(createOrderDto);
     } catch (error) {
       this.logger.error(`Failed to create order: ${error.message}`);
       throw new InternalServerErrorException('Failed to create order');

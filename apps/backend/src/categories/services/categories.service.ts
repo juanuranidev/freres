@@ -1,6 +1,7 @@
-import { Injectable, Logger, InternalServerErrorException } from '@nestjs/common';
+import { Category } from 'categories/entities/category.entity';
 import { CreateCategoryDto } from 'categories/dto/create-category.dto';
 import { CategoriesRepository } from 'categories/repositories/categories.repository';
+import { Injectable, Logger, InternalServerErrorException } from '@nestjs/common';
 
 @Injectable()
 export class CategoriesService {
@@ -10,7 +11,7 @@ export class CategoriesService {
     private readonly categoriesRepository: CategoriesRepository
   ) { }
 
-  async createManyFromSeed(createCategoryDto: CreateCategoryDto[]) {
+  async createManyFromSeed(createCategoryDto: CreateCategoryDto[]): Promise<void> {
     try {
       return await this.categoriesRepository.createManyFromSeed(createCategoryDto);
     } catch (error) {
@@ -19,21 +20,12 @@ export class CategoriesService {
     }
   }
 
-  async readByName(name: string) {
+  async readByName(name: string): Promise<Category | null> {
     try {
       return await this.categoriesRepository.readByName(name);
     } catch (error) {
       this.logger.error(`Failed to read category by name ${name}: ${error.message}`);
       throw new InternalServerErrorException(`Failed to read category by name ${name}`);
-    }
-  }
-
-  async deleteAll() {
-    try {
-      return await this.categoriesRepository.deleteAll();
-    } catch (error) {
-      this.logger.error(`Failed to delete all categories: ${error.message}`);
-      throw new InternalServerErrorException('Failed to delete all categories');
     }
   }
 
