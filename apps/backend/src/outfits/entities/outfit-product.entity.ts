@@ -3,7 +3,7 @@ import { Outfit } from "./outfit.entity";
 import { Product } from "../../products/entities/product.entity";
 
 @Entity({ name: 'outfit_products' })
-export class OutfitProducts {
+export class OutfitProduct {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

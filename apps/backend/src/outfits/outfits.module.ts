@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { Outfit } from './entities/outfit.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OutfitsService } from './services/outfits.service';
-import { OutfitProducts } from './entities/outfit-products.entity';
+import { OutfitProduct } from './entities/outfit-product.entity';
 import { OutfitsRepository } from './repositories/outfits.repositories';
+import { Product } from 'products/entities/product.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Outfit, OutfitProducts])],
+  imports: [TypeOrmModule.forFeature([Outfit, OutfitProduct, Product])],
   providers: [OutfitsService, OutfitsRepository],
   exports: [OutfitsService]
 })

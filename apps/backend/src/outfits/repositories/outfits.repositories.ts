@@ -2,9 +2,9 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateOutfitDto } from "../dto/create-outfit.dto";
 import { Outfit } from "../entities/outfit.entity";
-import { DataSource, In, QueryRunner, Repository } from "typeorm";
-import { OutfitProducts } from "outfits/entities/outfit-products.entity";
-import { Product } from "products/entities/product.entity";
+import { DataSource, QueryRunner, Repository } from "typeorm";
+import { Product } from "../../products/entities/product.entity";
+import { OutfitProduct } from "../entities/outfit-product.entity";
 
 @Injectable()
 export class OutfitsRepository {
@@ -13,8 +13,8 @@ export class OutfitsRepository {
         private readonly outfitRepository: Repository<Outfit>,
         @InjectRepository(Product)
         private readonly productRepository: Repository<Product>,
-        @InjectRepository(OutfitProducts)
-        private readonly outfitProductsRepository: Repository<OutfitProducts>,
+        @InjectRepository(OutfitProduct)
+        private readonly outfitProductsRepository: Repository<OutfitProduct>,
         private readonly dataSource: DataSource
     ) { }
 
@@ -53,10 +53,6 @@ export class OutfitsRepository {
         } finally {
             await queryRunner.release();
         }
-    }
-
-    async deleteAll() {
-        return await this.outfitRepository.delete({});
     }
 
 }
