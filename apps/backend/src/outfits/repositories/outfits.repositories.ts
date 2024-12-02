@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateOutfitDto } from "../dto/create-outfit.dto";
+import { CreateOutfitDto } from "../dtos/post/create-outfit.dto";
 import { Outfit } from "../entities/outfit.entity";
 import { DataSource, QueryRunner, Repository } from "typeorm";
 import { Product } from "../../products/entities/product.entity";
@@ -26,12 +26,14 @@ export class OutfitsRepository {
 
         try {
             for (const outfitDto of createOutfitDto) {
+                const { imageUrl, products } = outfitDto;
+
                 const outfit = this.outfitRepository.create({
-                    image_url: outfitDto.image_url
+                    image_url: imageUrl
                 });
                 await queryRunner.manager.save(outfit);
 
-                for (const productName of outfitDto.products) {
+                for (const productName of products) {
                     const product = await this.productRepository.findOne({
                         where: {
                             title: productName
@@ -49,10 +51,16 @@ export class OutfitsRepository {
             await queryRunner.commitTransaction();
         } catch (error) {
             await queryRunner.rollbackTransaction();
-            throw error;
+            throw new InternalServerErrorException('Error while creating outfits');
         } finally {
             await queryRunner.release();
         }
+    }
+
+    async readAll(): Promise<Outfit[]> {
+        return await this.outfitRepository.find({
+            relations: ['outfitProducts', 'outfitProducts.product'],
+        });
     }
 
 }

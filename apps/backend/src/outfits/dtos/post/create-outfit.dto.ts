@@ -4,7 +4,7 @@ export class CreateOutfitDto {
     @IsString()
     @IsNotEmpty()
     @IsUrl()
-    image_url: string
+    imageUrl: string
 
     @IsArray()
     @IsNotEmpty()
