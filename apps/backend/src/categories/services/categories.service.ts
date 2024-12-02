@@ -29,4 +29,8 @@ export class CategoriesService {
     }
   }
 
+  async readAll(): Promise<Category[]> {
+    return await this.categoriesRepository.readAll();
+  }
+
 }

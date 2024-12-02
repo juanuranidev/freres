@@ -9,8 +9,9 @@ import { OrdersRepository } from 'orders/repositories/orders.repository';
 @Injectable()
 export class OrdersService {
   private readonly logger = new Logger(OrdersService.name);
-
-  constructor(private readonly ordersRepository: OrdersRepository) { }
+  constructor(
+    private readonly ordersRepository: OrdersRepository
+  ) { }
 
   async create(createOrderDto: CreateOrderDto): Promise<void> {
     try {
@@ -20,4 +21,5 @@ export class OrdersService {
       throw new InternalServerErrorException('Failed to create order');
     }
   }
+
 }

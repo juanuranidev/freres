@@ -1,9 +1,11 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
+import { OrderProductDto } from './order-product.dto';
+import { IsString, IsNotEmpty, IsNumber, IsArray, IsUUID, ValidateNested, ArrayMinSize } from 'class-validator';
 
 export class CreateOrderDto {
     @IsString()
     @IsNotEmpty()
-    buyer_full_name: string;
+    buyerFullName: string;
 
     @IsString()
     @IsNotEmpty()
@@ -11,11 +13,11 @@ export class CreateOrderDto {
 
     @IsNumber()
     @IsNotEmpty()
-    postal_code: number;
+    postalCode: number;
 
     @IsString()
     @IsNotEmpty()
-    phone_number: string;
+    phoneNumber: string;
 
     @IsString()
     @IsNotEmpty()
@@ -24,7 +26,13 @@ export class CreateOrderDto {
     @IsString()
     notes: string;
 
-    @IsNumber()
+    @IsUUID()
     @IsNotEmpty()
-    state_id: number;
+    stateId: string;
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @ArrayMinSize(1)
+    @Type(() => OrderProductDto)
+    products: OrderProductDto[];
 }

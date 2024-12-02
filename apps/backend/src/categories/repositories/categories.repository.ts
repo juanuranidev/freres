@@ -19,4 +19,12 @@ export class CategoriesRepository {
         return await this.categoryRepository.findOne({ where: { name } });
     }
 
+    async readAll(): Promise<Category[]> {
+        return await this.categoryRepository.find({
+            select: {
+                name: true
+            }
+        });
+    }
+
 }

@@ -1,11 +1,13 @@
 import { State } from "../../states/entities/state.entity";
 import {
     Entity,
-    JoinColumn,
-    ManyToOne,
-    PrimaryGeneratedColumn,
     Column,
+    ManyToOne,
+    OneToMany,
+    JoinColumn,
+    PrimaryGeneratedColumn,
 } from 'typeorm';
+import { OrderDetails } from "./order-detail.entity";
 
 @Entity({ name: 'orders' })
 export class Order {
@@ -30,7 +32,10 @@ export class Order {
     @Column('varchar', { length: 255 })
     notes: string;
 
-    @ManyToOne(() => State, (state) => state.orders)
+    @ManyToOne(() => State, (state) => state.orders, { nullable: false })
     @JoinColumn({ name: 'state_id' })
     state: State;
+
+    @OneToMany(() => OrderDetails, (orderDetails: OrderDetails) => orderDetails.order, { nullable: false })
+    orderDetails: OrderDetails[];
 }
