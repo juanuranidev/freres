@@ -14,9 +14,4 @@ export class OutfitProduct {
     @ManyToOne(() => Product, (product) => product.id)
     @JoinColumn({ name: 'product_id' })
     product: Product;
-
-    @BeforeRecover()
-    async beforeRecover() {
-        console.log('beforeRecover');
-    }
 }
