@@ -702,4 +702,502 @@ export const PRODUCTS_SEED = [
             }
         ]
     },
+    // nuevo
+    {
+        title: "Buzo Regular Negro",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuestros Buzos tienen un calce clásico, ni al cuerpo ni oversize. Hecho con Frisa invisible peinada, suave y abrigada, con puños y cinturas del mismo tono que la prenda. Bolsillo centrado. Estampa FRERES y avios que certifican nuestra calidad. Este buzo combina tanto con outfits urbanos como con los mas clásico. No achica y no hace pelotitas.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034275/freres_new/Buzo_Regular_Negro_1_deyf2n.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034275/freres_new/Buzo_Regular_Negro_2_h9ph4y.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034276/freres_new/Buzo_Regular_Negro_3_a6n8oj.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034276/freres_new/Buzo_Regular_Negro_4_lgctvx.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034276/freres_new/Buzo_Regular_Negro_5_gpneem.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Regular Fraternidad Marron",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuestro corte regular busca cuidar el calce, comodidad, y respetar la anatomía del cuerpo, desde el calce de hombros, contorno de brazos y torso estrechos y un ancho que abraza pero no trepa. Elaborado con Frisa invisible.Cuenta con tira de limpieza y refuerzo de hombro a hombro aplicada con cadeneta y avío metálico en bolsillo. Estampa FRATERNIDAD en vinilo con textura gamuzada, realizada por el diseñador Lucio Cres.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034392/freres_new/Buzo_Regular_Fraternidad_Marron_1_stdpyh.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034392/freres_new/Buzo_Regular_Fraternidad_Marron_2_qi0d98.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034393/freres_new/Buzo_Regular_Fraternidad_Marron_3_skivtv.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034393/freres_new/Buzo_Regular_Fraternidad_Marron_4_yloi3s.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034393/freres_new/Buzo_Regular_Fraternidad_Marron_5_r6xhb8.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Negro",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuevos cortes, para nuevos tiempos. Le damos la bienvenida a la nueva silueta de Buzos ‘Boxy‘, caracterizados por ser amplios, de hombros caídos, y caja cuadrada. Un corte moderno que combina la comodidad y el estilo urbano para un uso diario relajado pero prolijo. Elaborados con frisa invisible. El diseño esencial cuenta con un avío metálico FR en el bolsillo y gracias a su simplicidad visual, va a ser tu caballito de guerra en la diaria.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034503/freres_new/Buzo_Negro_1_cdloei.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034503/freres_new/Buzo_Negro_2_dsqnsl.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034503/freres_new/Buzo_Negro_3_crprj4.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034503/freres_new/Buzo_Negro_4_w30zpa.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034504/freres_new/Buzo_Negro_5_tzntpt.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Regular Fraternidad Gris Melange",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuestro corte regular busca cuidar el calce, comodidad, y respetar la anatomía del cuerpo, desde el calce de hombros, contorno de brazos y torso estrechos y un ancho que abraza pero no trepa. Elaborado con Frisa invisible.Cuenta con tira de limpieza y refuerzo de hombro a hombro aplicada con cadeneta y avío metálico en bolsillo. Estampa FRATERNIDAD en vinilo con textura gamuzada, realizada por el diseñador Lucio Cres.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034617/freres_new/Buzo_Regular_Fraternidad_Gris_Melange_1_f2e3gb.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034617/freres_new/Buzo_Regular_Fraternidad_Gris_Melange_2_pqh0dz.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034618/freres_new/Buzo_Regular_Fraternidad_Gris_Melange_3_axzthw.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034618/freres_new/Buzo_Regular_Fraternidad_Gris_Melange_4_phgjv6.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034618/freres_new/Buzo_Regular_Fraternidad_Gris_Melange_5_qyfdov.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Regular Marron",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuestro corte regular busca cuidar el calce, comodidad, y respetar la anatomía del cuerpo, desde el calce de hombros, contorno de brazos y torso estrechos y un ancho que abraza pero no trepa. Elaborado con Frisa invisible.Cuenta con tira de limpieza y refuerzo de hombro a hombro aplicada con cadeneta y avío metálico en bolsillo. FRÈRES estampado en el tamaño y delicadeza perfecta para la prenda eterna que no vas a poder parar de usar.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034799/freres_new/Buzo_Regular_Marron_1_lxq25q.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034799/freres_new/Buzo_Regular_Marron_2_vrqavt.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034800/freres_new/Buzo_Regular_Marron_3_lo9bil.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034802/freres_new/Buzo_Regular_Marron_4_vc9hsz.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034803/freres_new/Buzo_Regular_Marron_5_fnzcqi.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034801/freres_new/Buzo_Regular_Marron_6_ne0pnd.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Regular Gris Melange",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuestro corte regular busca cuidar el calce, comodidad, y respetar la anatomía del cuerpo, desde el calce de hombros, contorno de brazos y torso estrechos y un ancho que abraza pero no trepa. Elaborado con Frisa invisible.Cuenta con tira de limpieza y refuerzo de hombro a hombro aplicada con cadeneta y avío metálico en bolsillo. FRÈRES estampado en el tamaño y delicadeza perfecta para la prenda eterna que no vas a poder parar de usar.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034910/freres_new/Buzo_Regular_Gris_Melange_1_utle6d.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034911/freres_new/Buzo_Regular_Gris_Melange_2_da0fpb.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034911/freres_new/Buzo_Regular_Gris_Melange_3_jh1el5.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034912/freres_new/Buzo_Regular_Gris_Melange_4_bftkuw.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733034913/freres_new/Buzo_Regular_Gris_Melange_5_jql0yc.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Competición Gris Melange",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuevos cortes, para nuevos tiempos. Le damos la bienvenida a la nueva silueta de Buzos ‘Boxy‘, caracterizados por ser amplios, de hombros caídos, y caja cuadrada. Un corte moderno que combina la comodidad y el estilo urbano para un uso diario relajado pero prolijo. Elaborados con frisa invisible. Estampa diseñada por Lucas Marchiani.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035021/freres_new/Buzo_Competici%C3%B3n_Gris_Melange_1_d5btgb.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035021/freres_new/Buzo_Competici%C3%B3n_Gris_Melange_2_h7zr0w.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035024/freres_new/Buzo_Competici%C3%B3n_Gris_Melange_3_bi1lnq.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035025/freres_new/Buzo_Competici%C3%B3n_Gris_Melange_4_mcwph8.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035024/freres_new/Buzo_Competici%C3%B3n_Gris_Melange_5_doao3v.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Gris Melange",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035130/freres_new/Buzo_Gris_Melange_1_fpfuft.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035130/freres_new/Buzo_Gris_Melange_2_surrhl.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035131/freres_new/Buzo_Gris_Melange_3_v81h5x.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035132/freres_new/Buzo_Gris_Melange_4_tijxdg.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035133/freres_new/Buzo_Gris_Melange_5_rkxqmq.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Marron",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuevos cortes, para nuevos tiempos. Le damos la bienvenida a la nueva silueta de Buzos ‘Boxy‘, caracterizados por ser amplios, de hombros caídos, y caja cuadrada. Un corte moderno que combina la comodidad y el estilo urbano para un uso diario relajado pero prolijo. Elaborados con frisa invisible. El diseño esencial cuenta con un avío metálico FR en el bolsillo y gracias a su simplicidad visual, va a ser tu caballito de guerra en la diaria.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035228/freres_new/Buzo_Marron_1_jbcyaq.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035228/freres_new/Buzo_Marron_2_lrd7rp.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035229/freres_new/Buzo_Marron_3_urpzxm.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
+    {
+        title: "Buzo Verde",
+        price: 70000,
+        discount: 0,
+        slug: "",
+        description: "Nuevos cortes, para nuevos tiempos. Le damos la bienvenida a la nueva silueta de Buzos ‘Boxy‘, caracterizados por ser amplios, de hombros caídos, y caja cuadrada. Un corte moderno que combina la comodidad y el estilo urbano para un uso diario relajado pero prolijo. Elaborados con frisa invisible. El diseño esencial cuenta con un avío metálico FR en el bolsillo y gracias a su simplicidad visual, va a ser tu caballito de guerra en la diaria.",
+        images: [
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035307/freres_new/Buzo_Verde_1_ytxbcc.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035307/freres_new/Buzo_Verde_2_ivirdf.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035308/freres_new/Buzo_Verde_3_rzhaou.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035311/freres_new/Buzo_Verde_4_p9dur5.webp",
+            },
+            {
+                url: "https://res.cloudinary.com/dhodvztdx/image/upload/v1733035310/freres_new/Buzo_Verde_5_hllsco.webp",
+            },
+        ],
+        sizes: [
+            {
+                name: "S",
+
+            },
+            {
+                name: "M",
+
+            },
+            {
+                name: "L",
+
+            },
+            {
+                name: "XL",
+
+            },
+        ],
+        categories: [
+            {
+                name: "Hoodies y Buzos",
+            },
+            {
+                name: "PRIMAVERA VERANO '25",
+            }
+        ]
+    },
 ]

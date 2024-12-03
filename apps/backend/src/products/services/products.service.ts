@@ -1,27 +1,41 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { CreateProductDto } from '../dtos/create-product.dto';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import { CreateProductDto } from '../dtos/post/create-product.dto';
 import { ProductsRepository } from 'products/repositories/product.repository';
+import { Product } from 'products/entities/product.entity';
+import { CriteriaProductDto } from 'products/dtos/get/criteria-product.dto';
 
 @Injectable()
 export class ProductsService {
+  private readonly logger = new Logger(ProductsService.name);
+
   constructor(
     private readonly productRepository: ProductsRepository
   ) { }
 
-  async createManyFromSeed(createProductDtos: CreateProductDto[]) {
+  async createManyFromSeed(createProductDtos: CreateProductDto[]): Promise<void> {
     try {
-      return await this.productRepository.createManyFromSeed(createProductDtos);
+      await this.productRepository.createManyFromSeed(createProductDtos);
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      this.logger.error(`Failed to create multiple products: ${error.message}`);
+      throw new InternalServerErrorException('Failed to create multiple products');
     }
   }
 
-  async deleteAll() {
+  async readAll(criteria: CriteriaProductDto): Promise<Product[]> {
     try {
-      return await this.productRepository.deleteAll();
+      return await this.productRepository.readAll(criteria);
     } catch (error) {
-      throw new InternalServerErrorException(error);
+      this.logger.error(`Failed to read all products: ${error.message}`);
+      throw new InternalServerErrorException('Failed to read all products');
     }
   }
 
+  async readById(id: string): Promise<Product> {
+    try {
+      return await this.productRepository.readById(id);
+    } catch (error) {
+      this.logger.error(`Failed to read product by id: ${error.message}`);
+      throw new InternalServerErrorException('Failed to read product by id');
+    }
+  }
 }

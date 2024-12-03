@@ -1,13 +1,14 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateProductDto } from "products/dtos/create-product.dto";
+import { CreateProductDto } from "products/dtos/post/create-product.dto";
 import { Product } from "products/entities/product.entity";
-import { ProductImage } from "products/entities/product-images.entity";
-import { ProductSize } from "products/entities/product-sizes.entity";
-import { ProductCategory } from "products/entities/product-categories.entity";
-import { Size } from "sizes/entities/sizes.entity";
+import { ProductImage } from "products/entities/product-image.entity";
+import { ProductSize } from "products/entities/product-size.entity";
+import { ProductCategory } from "products/entities/product-category.entity";
 import { Category } from "categories/entities/category.entity";
-import { Repository, DataSource, In, QueryRunner } from "typeorm";
+import { Repository, DataSource, In, QueryRunner, SelectQueryBuilder } from "typeorm";
+import { Size } from "sizes/entities/size.entity";
+import { CriteriaProductDto } from "products/dtos/get/criteria-product.dto";
 
 @Injectable()
 export class ProductsRepository {
@@ -27,7 +28,7 @@ export class ProductsRepository {
         private readonly dataSource: DataSource
     ) { }
 
-    async createManyFromSeed(products: CreateProductDto[]) {
+    async createManyFromSeed(products: CreateProductDto[]): Promise<void> {
         const queryRunner: QueryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -83,33 +84,47 @@ export class ProductsRepository {
             }
 
             await queryRunner.commitTransaction();
-            return true;
         } catch (error) {
-            console.error('Error in createMany:', error);
             await queryRunner.rollbackTransaction();
-            throw error;
+            throw new InternalServerErrorException(error);
         } finally {
             await queryRunner.release();
         }
     }
 
-    async deleteAll() {
-        const queryRunner: QueryRunner = this.dataSource.createQueryRunner();
-        await queryRunner.connect();
-        await queryRunner.startTransaction();
+    async readAll(criteria: CriteriaProductDto): Promise<Product[]> {
+        const { limit, offset, category, size } = criteria;
 
-        try {
-            await this.productImageRepository.delete({});
-            await this.productSizeRepository.delete({});
-            await this.productCategoryRepository.delete({});
-            await this.productRepository.delete({});
+        const query: SelectQueryBuilder<Product> = this.productRepository.createQueryBuilder("product")
+            .leftJoinAndSelect("product.images", "images")
+            .leftJoinAndSelect("product.productCategories", "productCategories")
+            .leftJoinAndSelect("productCategories.category", "category");
 
-            await queryRunner.commitTransaction();
-        } catch (error) {
-            await queryRunner.rollbackTransaction();
-            throw error;
-        } finally {
-            await queryRunner.release();
+        if (category) {
+            query.andWhere("productCategories.category_id = :category", { category });
         }
+
+        if (size) {
+            query.leftJoin("product.productSizes", "productSize");
+            query.andWhere("productSize.size_id = :size", { size });
+        }
+
+        if (limit) {
+            query.take(limit);
+        }
+
+        if (offset) {
+            query.skip(offset);
+        }
+
+        return await query.getMany();
     }
+
+    async readById(id: string): Promise<Product> {
+        return await this.productRepository.findOne({
+            where: { id },
+            relations: ["images", "productCategories.category"],
+        });
+    }
+
 }

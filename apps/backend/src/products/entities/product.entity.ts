@@ -1,6 +1,9 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
-import { ProductImage } from './product-images.entity';
-import { OutfitProducts } from '../../outfits/entities/outfit-products.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, BeforeInsert, JoinTable, ManyToMany, BeforeRecover } from 'typeorm';
+import { ProductImage } from './product-image.entity';
+import { OutfitProduct } from '../../outfits/entities/outfit-product.entity';
+import { Category } from 'categories/entities/category.entity';
+import { ProductCategory } from './product-category.entity';
+import { ProductSize } from './product-size.entity';
 
 @Entity({ name: 'products' })
 export class Product {
@@ -33,11 +36,22 @@ export class Product {
     })
     images: ProductImage[];
 
-    @OneToMany(() => OutfitProducts, (outfitProducts) => outfitProducts.product)
-    outfitProducts: OutfitProducts[];
+    @OneToMany(() => OutfitProduct, (outfitProducts) => outfitProducts.product)
+    outfitProducts: OutfitProduct[];
+
+    @OneToMany(() => ProductCategory, (productCategory) => productCategory.product)
+    productCategories: ProductCategory[];
+
+    @OneToMany(() => ProductSize, (productSize) => productSize.product)
+    productSizes: ProductSize[];
 
     @BeforeInsert()
     async generateSlug() {
         this.slug = this.title.toLowerCase().replace(/ /g, '-');
+    }
+
+    @BeforeRecover()
+    async beforeRecover() {
+        console.log('beforeRecover');
     }
 }
