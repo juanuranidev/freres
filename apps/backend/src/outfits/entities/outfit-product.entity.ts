@@ -7,11 +7,11 @@ export class OutfitProduct {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => Outfit, (outfit) => outfit.id)
+    @ManyToOne(() => Outfit, (outfit) => outfit.id, { nullable: false })
     @JoinColumn({ name: 'outfit_id' })
     outfit: Outfit;
 
-    @ManyToOne(() => Product, (product) => product.id)
+    @ManyToOne(() => Product, (product) => product.id, { nullable: false })
     @JoinColumn({ name: 'product_id' })
     product: Product;
 }

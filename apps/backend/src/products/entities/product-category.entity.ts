@@ -8,11 +8,11 @@ export class ProductCategory {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => Product, (product) => product.id)
+    @ManyToOne(() => Product, (product) => product.id, { nullable: false })
     @JoinColumn({ name: 'product_id' })
     product: Product;
 
-    @ManyToOne(() => Category, (category) => category.id)
+    @ManyToOne(() => Category, (category) => category.id, { nullable: false })
     @JoinColumn({ name: 'category_id' })
     category: Category;
 }

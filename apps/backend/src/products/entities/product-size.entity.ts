@@ -11,11 +11,11 @@ export class ProductSize {
     @Column('int')
     stock: number;
 
-    @ManyToOne(() => Product, (product) => product.id)
+    @ManyToOne(() => Product, (product) => product.id, { nullable: false })
     @JoinColumn({ name: 'product_id' })
     product: Product;
 
-    @ManyToOne(() => Size, (size) => size.id)
+    @ManyToOne(() => Size, (size) => size.id, { nullable: false })
     @JoinColumn({ name: 'size_id' })
     size: Size;
 }
