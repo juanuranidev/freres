@@ -1,8 +1,8 @@
 import { State } from '../entities/state.entity';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { CreateStateDto } from '../dto/create-state.dto';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateStateDto } from '../dto/post/create-state.dto';
 
 @Injectable()
 export class StatesRepository {
@@ -11,11 +11,16 @@ export class StatesRepository {
         private readonly stateRepository: Repository<State>,
     ) { }
 
-    async createManyFromSeed(createStateDto: CreateStateDto[]) {
-        return await this.stateRepository.insert(createStateDto);
+    async createManyFromSeed(createStateDto: CreateStateDto[]): Promise<void> {
+        await this.stateRepository.insert(createStateDto);
     }
 
-    async deleteAll() {
-        return await this.stateRepository.delete({});
+    async readAll(): Promise<State[]> {
+        return await this.stateRepository.find({
+            select: {
+                name: true
+            }
+        });
     }
+
 }

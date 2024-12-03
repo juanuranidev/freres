@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
-import { CreateStateDto } from '../dto/create-state.dto';
+import { CreateStateDto } from '../dto/post/create-state.dto';
 import { StatesRepository } from '../repositories/states.repository';
+import { State } from 'states/entities/state.entity';
 
 @Injectable()
 export class StatesService {
@@ -10,21 +11,22 @@ export class StatesService {
     private readonly statesRepository: StatesRepository,
   ) { }
 
-  async createManyFromSeed(createStateDto: CreateStateDto[]) {
+  async createManyFromSeed(createStateDto: CreateStateDto[]): Promise<void> {
     try {
-      return await this.statesRepository.createManyFromSeed(createStateDto);
+      await this.statesRepository.createManyFromSeed(createStateDto);
     } catch (error) {
       this.logger.error(`Failed to create multiple states: ${error.message}`);
       throw new InternalServerErrorException('Failed to create multiple states');
     }
   }
 
-  async deleteAll() {
+  async readAll(): Promise<State[]> {
     try {
-      return await this.statesRepository.deleteAll();
+      return await this.statesRepository.readAll();
     } catch (error) {
-      this.logger.error(`Failed to delete all states: ${error.message}`);
-      throw new InternalServerErrorException('Failed to delete all states');
+      this.logger.error(`Failed to read all states: ${error.message}`);
+      throw new InternalServerErrorException('Failed to read all states');
     }
   }
+
 }

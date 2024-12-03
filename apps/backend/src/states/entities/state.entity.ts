@@ -9,6 +9,6 @@ export class State {
     @Column('varchar', { length: 255 })
     name: string;
 
-    @OneToMany(() => Order, (order) => order.state)
+    @OneToMany(() => Order, (order: Order) => order.state)
     orders: Order[];
 }
