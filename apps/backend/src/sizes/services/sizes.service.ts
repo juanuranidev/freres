@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
-import { CreateSizeDto } from '../dto/create-size.dto';
+import { CreateSizeDto } from '../dto/post/create-size.dto';
 import { SizesRepository } from '../repositories/sizes.repository';
 import { Size } from '../entities/size.entity';
 

@@ -1,7 +1,7 @@
 import { Size } from '../entities/size.entity';
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { CreateSizeDto } from '../dto/create-size.dto';
+import { CreateSizeDto } from '../dto/post/create-size.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
