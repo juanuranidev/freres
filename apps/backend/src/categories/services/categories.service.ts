@@ -1,7 +1,7 @@
 import { Category } from 'categories/entities/category.entity';
 import { CreateCategoryDto } from 'categories/dto/create-category.dto';
 import { CategoriesRepository } from 'categories/repositories/categories.repository';
-import { Injectable, Logger, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, Logger, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class CategoriesService {
@@ -22,7 +22,13 @@ export class CategoriesService {
 
   async readByName(name: string): Promise<Category | null> {
     try {
-      return await this.categoriesRepository.readByName(name);
+      const category = await this.categoriesRepository.readByName(name);
+
+      if (!category) {
+        throw new NotFoundException(`Category with name ${name} not found`);
+      }
+
+      return category;
     } catch (error) {
       this.logger.error(`Failed to read category by name ${name}: ${error.message}`);
       throw new InternalServerErrorException(`Failed to read category by name ${name}`);
@@ -30,7 +36,18 @@ export class CategoriesService {
   }
 
   async readAll(): Promise<Category[]> {
-    return await this.categoriesRepository.readAll();
+    try {
+      const categories: Category[] = await this.categoriesRepository.readAll();
+
+      if (!categories.length) {
+        throw new NotFoundException('No categories found');
+      }
+
+      return categories;
+    } catch (error) {
+      this.logger.error(`Failed to read all categories: ${error.message}`);
+      throw new InternalServerErrorException('Failed to read all categories');
+    }
   }
 
 }
