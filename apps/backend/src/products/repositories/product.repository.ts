@@ -1,6 +1,5 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateProductDto } from "products/dtos/post/create-product.dto";
 import { Product } from "products/entities/product.entity";
 import { ProductImage } from "products/entities/product-image.entity";
 import { ProductSize } from "products/entities/product-size.entity";
@@ -8,7 +7,8 @@ import { ProductCategory } from "products/entities/product-category.entity";
 import { Category } from "categories/entities/category.entity";
 import { Repository, DataSource, In, QueryRunner, SelectQueryBuilder } from "typeorm";
 import { Size } from "sizes/entities/size.entity";
-import { CriteriaProductDto } from "products/dtos/get/criteria-product.dto";
+import { ProductReadAllCriteriaDto } from "products/dtos/read/read-all/products.read-all-criteria.dto";
+import { CreateProductDto } from "products/dtos/create/create-many-from-seed/products.create-many-from-seed.dto";
 
 @Injectable()
 export class ProductsRepository {
@@ -92,29 +92,48 @@ export class ProductsRepository {
         }
     }
 
-    async readAll(criteria: CriteriaProductDto): Promise<Product[]> {
+    async readAll(criteria: ProductReadAllCriteriaDto): Promise<Product[]> {
         const { limit, offset, category, size } = criteria;
 
         const query: SelectQueryBuilder<Product> = this.productRepository.createQueryBuilder("product")
             .leftJoinAndSelect("product.images", "images")
-            .leftJoinAndSelect("product.productCategories", "productCategories")
-            .leftJoinAndSelect("productCategories.category", "category");
+            .leftJoinAndSelect("product.categories", "categories")
+            .leftJoinAndSelect("categories.category", "category")
+            .leftJoinAndSelect("product.sizes", "sizes")
+            .leftJoinAndSelect("sizes.size", "size")
+            .select([
+                'product.id',
+                'product.title',
+                'product.price',
+                'product.description',
+                'product.discount',
+                'product.slug',
+                'product.createdAt',
+                'product.updatedAt',
+                'images.url',
+                'categories.id',
+                'category.name',
+                'sizes.stock',
+                'size.name'
+            ])
+            .distinct(true);
 
         if (category) {
-            query.andWhere("productCategories.category_id = :category", { category });
+            query.andWhere("category.id = :category", { category });
         }
 
         if (size) {
-            query.leftJoin("product.productSizes", "productSize");
-            query.andWhere("productSize.size_id = :size", { size });
+            query.andWhere("size.name = :size", { size });
+        }
+
+        query.orderBy('product.createdAt', 'DESC');
+
+        if (offset) {
+            query.skip(offset);
         }
 
         if (limit) {
             query.take(limit);
-        }
-
-        if (offset) {
-            query.skip(offset);
         }
 
         return await query.getMany();
@@ -123,7 +142,7 @@ export class ProductsRepository {
     async readById(id: string): Promise<Product> {
         return await this.productRepository.findOne({
             where: { id },
-            relations: ["images", "productCategories.category"],
+            relations: ["images", "categories.category", "sizes", "sizes.size"],
         });
     }
 

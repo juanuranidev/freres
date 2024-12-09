@@ -1,7 +1,10 @@
 import { Product } from 'products/entities/product.entity';
 import { Controller, Get, Param, ParseUUIDPipe, Query } from '@nestjs/common';
 import { ProductsService } from 'products/services/products.service';
-import { CriteriaProductDto } from 'products/dtos/get/criteria-product.dto';
+import { ProductReadAllCriteriaDto } from 'products/dtos/read/read-all/products.read-all-criteria.dto';
+import { ApiResponse } from '@nestjs/swagger';
+import { ProductsReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
+import { ProductReadByIdResponseDto } from 'products/dtos/read/read-by-id/products.read-by-id-response.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -10,12 +13,17 @@ export class ProductsController {
     ) { }
 
     @Get()
-    readAll(@Query() criteria: CriteriaProductDto): Promise<Product[]> {
+    @ApiResponse({ status: 200, description: 'Get all products', type: [ProductsReadAllResponseDto] })
+    @ApiResponse({ status: 500, description: 'Internal server error' })
+    readAll(@Query() criteria: ProductReadAllCriteriaDto) {
         return this.productsService.readAll(criteria);
     }
 
     @Get(':id')
-    readById(@Param('id', ParseUUIDPipe) id: string): Promise<Product> {
+    @ApiResponse({ status: 404, description: 'Product not found' })
+    @ApiResponse({ status: 200, description: 'Get product by id', type: ProductReadByIdResponseDto })
+    @ApiResponse({ status: 500, description: 'Internal server error' })
+    readById(@Param('id', ParseUUIDPipe) id: string) {
         return this.productsService.readById(id);
     }
 

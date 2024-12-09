@@ -1,14 +1,17 @@
-import { IsUUID, IsNumber, IsOptional } from "class-validator";
+import { IsUUID, IsNumber, IsOptional, IsString } from "class-validator";
 import { Transform } from "class-transformer";
+import { ApiProperty } from "@nestjs/swagger";
 
-export class CriteriaProductDto {
+export class ProductReadAllCriteriaDto {
     @IsNumber()
     @IsOptional()
+    @ApiProperty({ required: false })
     @Transform(({ value }) => value ? parseInt(value) : undefined)
     limit: number;
 
     @IsNumber()
     @IsOptional()
+    @ApiProperty({ required: false })
     @Transform(({ value }) => value ? parseInt(value) : undefined)
     offset: number;
 
@@ -16,7 +19,8 @@ export class CriteriaProductDto {
     @IsOptional()
     category: string;
 
-    @IsUUID()
+    @IsString()
     @IsOptional()
+    @ApiProperty({ required: false })
     size: string;
 }

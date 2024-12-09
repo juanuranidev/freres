@@ -13,12 +13,12 @@ import { ProductsController } from './controllers/products.controller';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      Product,
-      ProductImage,
-      ProductSize,
-      ProductCategory,
       Size,
-      Category
+      Product,
+      Category,
+      ProductSize,
+      ProductImage,
+      ProductCategory,
     ])
   ],
   controllers: [ProductsController],
