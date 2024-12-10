@@ -3,7 +3,7 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { CreateOrderDto } from '../dto/create-order.dto';
+import { CreateOrderDto } from '../dto/post/create-order.dto';
 import { OrdersRepository } from 'orders/repositories/orders.repository';
 
 @Injectable()

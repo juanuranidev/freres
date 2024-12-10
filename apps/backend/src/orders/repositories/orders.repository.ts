@@ -1,7 +1,7 @@
 import { Order } from "../entities/order.entity";
 import { Injectable } from "@nestjs/common";
 import { DataSource, Repository, QueryRunner } from "typeorm";
-import { CreateOrderDto } from "../dto/create-order.dto";
+import { CreateOrderDto } from "../dto/post/create-order.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { OrderDetails } from "../entities/order-detail.entity";
 

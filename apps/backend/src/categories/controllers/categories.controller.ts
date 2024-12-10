@@ -8,8 +8,7 @@ export class CategoriesController {
     constructor(private readonly categoriesService: CategoriesService) { }
 
     @Get()
-    @ApiResponse({ status: 404, description: 'No categories found' })
-    @ApiResponse({ status: 200, description: 'Get all categories', type: [Category] })
+    @ApiResponse({ status: 200, description: 'Get all categories (can be empty)', type: [Category] })
     readAll(): Promise<Category[]> {
         return this.categoriesService.readAll();
     }

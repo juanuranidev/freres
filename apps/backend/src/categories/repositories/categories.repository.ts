@@ -1,7 +1,7 @@
 import { Category } from "categories/entities/category.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateCategoryDto } from "categories/dto/create-category.dto";
+import { CategoryCreateManyFromSeedDto } from "categories/dto/create/categories.create-many-from-seed.dto";
 import { Repository } from "typeorm";
 
 @Injectable()
@@ -11,7 +11,7 @@ export class CategoriesRepository {
         private readonly categoryRepository: Repository<Category>,
     ) { }
 
-    async createManyFromSeed(createCategoryDto: CreateCategoryDto[]): Promise<void> {
+    async createManyFromSeed(createCategoryDto: CategoryCreateManyFromSeedDto[]): Promise<void> {
         await this.categoryRepository.insert(createCategoryDto);
     }
 
