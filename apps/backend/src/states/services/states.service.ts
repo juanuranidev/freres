@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
-import { CreateStateDto } from '../dto/post/create-state.dto';
+import { SizeCreateManyFromSeedDto } from '../dto/create/states.create-many-from-seed.dto';
 import { StatesRepository } from '../repositories/states.repository';
 import { State } from 'states/entities/state.entity';
 
@@ -11,7 +11,7 @@ export class StatesService {
     private readonly statesRepository: StatesRepository,
   ) { }
 
-  async createManyFromSeed(createStateDto: CreateStateDto[]): Promise<void> {
+  async createManyFromSeed(createStateDto: SizeCreateManyFromSeedDto[]): Promise<void> {
     try {
       await this.statesRepository.createManyFromSeed(createStateDto);
     } catch (error) {

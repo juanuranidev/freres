@@ -2,7 +2,7 @@ import { State } from '../entities/state.entity';
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateStateDto } from '../dto/post/create-state.dto';
+import { SizeCreateManyFromSeedDto } from '../dto/create/states.create-many-from-seed.dto';
 
 @Injectable()
 export class StatesRepository {
@@ -11,16 +11,12 @@ export class StatesRepository {
         private readonly stateRepository: Repository<State>,
     ) { }
 
-    async createManyFromSeed(createStateDto: CreateStateDto[]): Promise<void> {
+    async createManyFromSeed(createStateDto: SizeCreateManyFromSeedDto[]): Promise<void> {
         await this.stateRepository.insert(createStateDto);
     }
 
     async readAll(): Promise<State[]> {
-        return await this.stateRepository.find({
-            select: {
-                name: true
-            }
-        });
+        return await this.stateRepository.find();
     }
 
 }

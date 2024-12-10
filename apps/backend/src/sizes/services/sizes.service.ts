@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
-import { CreateSizeDto } from '../dto/post/create-size.dto';
 import { SizesRepository } from '../repositories/sizes.repository';
 import { Size } from '../entities/size.entity';
+import { SizeCreateManyFromSeedDto } from 'sizes/dto/create/sizes.create-many-from-seed.dto';
 
 @Injectable()
 export class SizesService {
@@ -20,7 +20,7 @@ export class SizesService {
     }
   }
 
-  async createManyFromSeed(createSizeDto: CreateSizeDto[]): Promise<void> {
+  async createManyFromSeed(createSizeDto: SizeCreateManyFromSeedDto[]): Promise<void> {
     try {
       await this.sizesRepository.createManyFromSeed(createSizeDto);
     } catch (error) {

@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-export class CreateSizeDto {
+export class SizeCreateManyFromSeedDto {
     @IsString()
     @IsNotEmpty()
     name: string;

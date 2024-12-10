@@ -1,8 +1,8 @@
 import { Size } from '../entities/size.entity';
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { CreateSizeDto } from '../dto/post/create-size.dto';
 import { InjectRepository } from '@nestjs/typeorm';
+import { SizeCreateManyFromSeedDto } from 'sizes/dto/create/sizes.create-many-from-seed.dto';
 
 @Injectable()
 export class SizesRepository {
@@ -11,7 +11,7 @@ export class SizesRepository {
     private readonly sizeRepository: Repository<Size>,
   ) { }
 
-  async createManyFromSeed(createSizeDto: CreateSizeDto[]): Promise<void> {
+  async createManyFromSeed(createSizeDto: SizeCreateManyFromSeedDto[]): Promise<void> {
     await this.sizeRepository.insert(createSizeDto);
   }
 
