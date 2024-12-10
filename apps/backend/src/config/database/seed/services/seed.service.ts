@@ -3,17 +3,16 @@ import { CategoriesService } from 'categories/services/categories.service';
 import { CATEGORIES_SEED } from 'categories/database/seed/categories.seed';
 import { SizesService } from 'sizes/services/sizes.service';
 import { ProductsService } from 'products/services/products.service';
-import { CreateProductDto } from 'products/dtos/post/create-product.dto';
-import { CreateSizeDto } from 'sizes/dto/post/create-size.dto';
-import { CreateCategoryDto } from 'categories/dto/create-category.dto';
+import { ProductCreateManyFromSeedDto } from 'products/dtos/create/create-many-from-seed/products.create-many-from-seed.dto';
+import { SizeCreateManyFromSeedDto } from 'sizes/dto/create/sizes.create-many-from-seed.dto';
 import { PRODUCTS_SEED } from 'products/database/seed/products.seed';
 import { SIZES_SEED } from 'sizes/database/seed/sizes.seed';
 import { StatesService } from 'states/services/states.service';
 import { STATES_SEED } from 'states/database/seed/states.seed';
-import { CreateStateDto } from 'states/dto/post/create-state.dto';
 import { OutfitsService } from 'outfits/services/outfits.service';
-import { CreateOutfitDto } from 'outfits/dtos/post/create-outfit.dto';
 import { OUTFITS_SEED } from 'outfits/database/seed/outfits.seed';
+import { CategoryCreateManyFromSeedDto } from 'categories/dto/create/categories.create-many-from-seed.dto';
+import { OutfitCreateManyFromSeedDto } from 'outfits/dtos/create/outfits.create-many-from-seed.dto';
 
 @Injectable()
 export class SeedService {
@@ -27,24 +26,19 @@ export class SeedService {
 
   async run() {
     try {
-      // States
-      const statesSeed: CreateStateDto[] = STATES_SEED;
+      const statesSeed: SizeCreateManyFromSeedDto[] = STATES_SEED;
       await this.statesService.createManyFromSeed(statesSeed);
 
-      // Categories
-      const categoriesSeed: CreateCategoryDto[] = CATEGORIES_SEED;
+      const categoriesSeed: CategoryCreateManyFromSeedDto[] = CATEGORIES_SEED;
       await this.categoriesService.createManyFromSeed(categoriesSeed);
 
-      // Sizes
-      const sizesSeed: CreateSizeDto[] = SIZES_SEED;
+      const sizesSeed: SizeCreateManyFromSeedDto[] = SIZES_SEED;
       await this.sizesService.createManyFromSeed(sizesSeed);
 
-      // Products
-      const productsSeed: CreateProductDto[] = PRODUCTS_SEED;
+      const productsSeed: ProductCreateManyFromSeedDto[] = PRODUCTS_SEED;
       await this.productsService.createManyFromSeed(productsSeed);
 
-      // Outfits
-      const outfitsSeed: CreateOutfitDto[] = OUTFITS_SEED;
+      const outfitsSeed: OutfitCreateManyFromSeedDto[] = OUTFITS_SEED;
       await this.outfitsService.createManyFromSeed(outfitsSeed);
 
       return {

@@ -9,7 +9,7 @@ export default registerAs("database", () => ({
     database: process.env.POSTGRES_DB,
     autoLoadEntities: true,
     synchronize: process.env.SYNC_MIGRATIONS === 'true',
-    logging: true,
+    logging: false,
     entities: [__dirname + '/**/*.entity.{js,ts}'],
 }));
 
