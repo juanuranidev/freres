@@ -1,6 +1,6 @@
 import { IsArray, IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
-export class CreateOutfitDto {
+export class OutfitCreateManyFromSeedDto {
     @IsString()
     @IsNotEmpty()
     @IsUrl()

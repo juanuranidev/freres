@@ -3,7 +3,7 @@ import { Controller, Get, Param, ParseUUIDPipe, Query } from '@nestjs/common';
 import { ProductsService } from 'products/services/products.service';
 import { ProductReadAllCriteriaDto } from 'products/dtos/read/read-all/products.read-all-criteria.dto';
 import { ApiResponse } from '@nestjs/swagger';
-import { ProductsReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
+import { ProductReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
 import { ProductReadByIdResponseDto } from 'products/dtos/read/read-by-id/products.read-by-id-response.dto';
 
 @Controller('products')
@@ -13,10 +13,10 @@ export class ProductsController {
     ) { }
 
     @Get()
-    @ApiResponse({ status: 200, description: 'Get all products', type: [ProductsReadAllResponseDto] })
+    @ApiResponse({ status: 200, description: 'Get all products', type: [ProductReadAllResponseDto] })
     @ApiResponse({ status: 500, description: 'Internal server error' })
-    readAll(@Query() criteria: ProductReadAllCriteriaDto) {
-        return this.productsService.readAll(criteria);
+    readAll(@Query() productReadAllCriteriaDto: ProductReadAllCriteriaDto) {
+        return this.productsService.readAll(productReadAllCriteriaDto);
     }
 
     @Get(':id')

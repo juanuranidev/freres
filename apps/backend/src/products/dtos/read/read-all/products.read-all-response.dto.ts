@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-class SizeResponse {
+class SizesDto {
     @ApiProperty()
     stock: number;
 
@@ -8,7 +8,7 @@ class SizeResponse {
     name: string;
 }
 
-export class ProductsReadAllResponseDto {
+export class ProductReadAllResponseDto {
     @ApiProperty()
     id: string;
 
@@ -39,6 +39,6 @@ export class ProductsReadAllResponseDto {
     @ApiProperty({ type: [String] })
     categories: string[];
 
-    @ApiProperty({ type: [SizeResponse] })
-    sizes: SizeResponse[];
+    @ApiProperty({ type: [SizesDto] })
+    sizes: SizesDto[];
 } 

@@ -1,8 +1,8 @@
-import { Outfit } from 'outfits/entities/outfit.entity';
-import { CreateOutfitDto } from '../dtos/post/create-outfit.dto';
+import { OutfitReadAllResponseDto } from 'outfits/dtos/read/read-all/outfits.read-all-response.dto';
+import { OutfitCreateManyFromSeedDto } from '../dtos/create/outfits.create-many-from-seed.dto';
 import { OutfitsRepository } from '../repositories/outfits.repositories';
-import { OutfitReadAllResponseDto } from 'outfits/dtos/response/outfit-read-all.response.dto';
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
+import { outfitReadAllServiceMapper } from 'outfits/mappers/read/outfits.read-all-service.mapper';
 
 @Injectable()
 export class OutfitsService {
@@ -11,7 +11,7 @@ export class OutfitsService {
     private readonly outfitsRepository: OutfitsRepository
   ) { }
 
-  async createManyFromSeed(createOutfitDto: CreateOutfitDto[]) {
+  async createManyFromSeed(createOutfitDto: OutfitCreateManyFromSeedDto[]) {
     try {
       await this.outfitsRepository.createManyFromSeed(createOutfitDto);
     } catch (error) {
@@ -23,7 +23,8 @@ export class OutfitsService {
   async readAll(): Promise<OutfitReadAllResponseDto[]> {
     try {
       const outfits = await this.outfitsRepository.readAll();
-      return outfits.map((outfit: Outfit) => new OutfitReadAllResponseDto(outfit));
+
+      return outfitReadAllServiceMapper(outfits);
     } catch (error) {
       this.logger.error(`Failed to find all outfits: ${error.message}`);
       throw new InternalServerErrorException('Failed to find all outfits');

@@ -41,6 +41,7 @@ export class Product {
     @Column('text')
     description: string;
 
+    @ApiProperty()
     @OneToMany(() => ProductImage, (productImage) => productImage.product, {
         eager: true,
     })

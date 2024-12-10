@@ -23,7 +23,7 @@ class CategoryDto {
     name: string;
 }
 
-export class CreateProductDto {
+export class ProductCreateManyFromSeedDto {
     @IsNotEmpty()
     @IsString()
     @ApiProperty()

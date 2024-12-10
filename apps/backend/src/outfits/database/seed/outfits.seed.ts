@@ -1,6 +1,6 @@
-import { CreateOutfitDto } from "outfits/dtos/post/create-outfit.dto";
+import { OutfitCreateManyFromSeedDto } from "outfits/dtos/create/outfits.create-many-from-seed.dto";
 
-export const OUTFITS_SEED: CreateOutfitDto[] = [
+export const OUTFITS_SEED: OutfitCreateManyFromSeedDto[] = [
     {
         imageUrl: 'https://res.cloudinary.com/dhodvztdx/image/upload/v1733036019/freres_new/outift_1_fz6x0b.webp',
         products: ['Buzo Verde', 'Buzo Verde', 'Buzo Verde']

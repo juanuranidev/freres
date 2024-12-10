@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateOutfitDto } from "../dtos/post/create-outfit.dto";
+import { OutfitCreateManyFromSeedDto } from "../dtos/create/outfits.create-many-from-seed.dto";
 import { Outfit } from "../entities/outfit.entity";
 import { DataSource, QueryRunner, Repository } from "typeorm";
 import { Product } from "../../products/entities/product.entity";
@@ -18,7 +18,7 @@ export class OutfitsRepository {
         private readonly dataSource: DataSource
     ) { }
 
-    async createManyFromSeed(createOutfitDto: CreateOutfitDto[]) {
+    async createManyFromSeed(createOutfitDto: OutfitCreateManyFromSeedDto[]) {
         const queryRunner: QueryRunner = this.dataSource.createQueryRunner();
 
         await queryRunner.connect();
@@ -59,7 +59,7 @@ export class OutfitsRepository {
 
     async readAll(): Promise<Outfit[]> {
         return await this.outfitRepository.find({
-            relations: ['outfitProducts', 'outfitProducts.product'],
+            relations: ['outfits', 'outfits.product'],
         });
     }
 

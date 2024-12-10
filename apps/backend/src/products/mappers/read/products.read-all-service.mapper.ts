@@ -2,9 +2,9 @@ import { Product } from 'products/entities/product.entity';
 import { ProductSize } from 'products/entities/product-size.entity';
 import { ProductImage } from 'products/entities/product-image.entity';
 import { ProductCategory } from 'products/entities/product-category.entity';
-import { ProductsReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
+import { ProductReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
 
-export const productsReadAllServiceMapper = (products: Product[]): ProductsReadAllResponseDto[] => {
+export const productsReadAllServiceMapper = (products: Product[]): ProductReadAllResponseDto[] => {
     return products.map((product: Product) => ({
         id: product.id,
         title: product.title,

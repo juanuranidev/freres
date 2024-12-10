@@ -1,8 +1,8 @@
 import { Product } from 'products/entities/product.entity';
-import { CreateProductDto } from '../dtos/create/create-many-from-seed/products.create-many-from-seed.dto';
+import { ProductCreateManyFromSeedDto } from '../dtos/create/create-many-from-seed/products.create-many-from-seed.dto';
 import { ProductsRepository } from 'products/repositories/product.repository';
 import { ProductReadAllCriteriaDto } from 'products/dtos/read/read-all/products.read-all-criteria.dto';
-import { ProductsReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
+import { ProductReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
 import { ProductReadByIdResponseDto } from 'products/dtos/read/read-by-id/products.read-by-id-response.dto';
 import { productsReadAllServiceMapper } from 'products/mappers/read/products.read-all-service.mapper';
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
@@ -15,7 +15,7 @@ export class ProductsService {
     private readonly productRepository: ProductsRepository
   ) { }
 
-  async createManyFromSeed(createProductDtos: CreateProductDto[]): Promise<void> {
+  async createManyFromSeed(createProductDtos: ProductCreateManyFromSeedDto[]): Promise<void> {
     try {
       await this.productRepository.createManyFromSeed(createProductDtos);
     } catch (error) {
@@ -24,19 +24,12 @@ export class ProductsService {
     }
   }
 
-  async readAll(criteria: ProductReadAllCriteriaDto): Promise<ProductsReadAllResponseDto[]> {
+  async readAll(productReadAllCriteriaDto: ProductReadAllCriteriaDto): Promise<ProductReadAllResponseDto[]> {
     try {
-      const products: Product[] = await this.productRepository.readAll(criteria);
-
-      if (!products.length) {
-        throw new NotFoundException('No products found matching the criteria');
-      }
+      const products: Product[] = await this.productRepository.readAll(productReadAllCriteriaDto);
 
       return productsReadAllServiceMapper(products);
     } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
-      }
       this.logger.error(`Failed to read all products: ${error.message}`);
       throw new InternalServerErrorException(`Failed to read all products: ${error.message}`);
     }

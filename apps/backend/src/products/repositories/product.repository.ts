@@ -1,14 +1,14 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Product } from "products/entities/product.entity";
-import { ProductImage } from "products/entities/product-image.entity";
-import { ProductSize } from "products/entities/product-size.entity";
-import { ProductCategory } from "products/entities/product-category.entity";
-import { Category } from "categories/entities/category.entity";
-import { Repository, DataSource, In, QueryRunner, SelectQueryBuilder } from "typeorm";
 import { Size } from "sizes/entities/size.entity";
+import { Product } from "products/entities/product.entity";
+import { Category } from "categories/entities/category.entity";
+import { ProductSize } from "products/entities/product-size.entity";
+import { ProductImage } from "products/entities/product-image.entity";
+import { ProductCategory } from "products/entities/product-category.entity";
+import { InjectRepository } from "@nestjs/typeorm";
 import { ProductReadAllCriteriaDto } from "products/dtos/read/read-all/products.read-all-criteria.dto";
-import { CreateProductDto } from "products/dtos/create/create-many-from-seed/products.create-many-from-seed.dto";
+import { ProductCreateManyFromSeedDto } from "products/dtos/create/create-many-from-seed/products.create-many-from-seed.dto";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Repository, DataSource, In, QueryRunner, SelectQueryBuilder } from "typeorm";
 
 @Injectable()
 export class ProductsRepository {
@@ -28,7 +28,7 @@ export class ProductsRepository {
         private readonly dataSource: DataSource
     ) { }
 
-    async createManyFromSeed(products: CreateProductDto[]): Promise<void> {
+    async createManyFromSeed(products: ProductCreateManyFromSeedDto[]): Promise<void> {
         const queryRunner: QueryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -92,8 +92,8 @@ export class ProductsRepository {
         }
     }
 
-    async readAll(criteria: ProductReadAllCriteriaDto): Promise<Product[]> {
-        const { limit, offset, category, size } = criteria;
+    async readAll(productReadAllCriteriaDto: ProductReadAllCriteriaDto): Promise<Product[]> {
+        const { limit, offset, category, size } = productReadAllCriteriaDto;
 
         const query: SelectQueryBuilder<Product> = this.productRepository.createQueryBuilder("product")
             .leftJoinAndSelect("product.images", "images")
