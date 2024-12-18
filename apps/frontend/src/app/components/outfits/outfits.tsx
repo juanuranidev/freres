@@ -10,7 +10,7 @@ import { OutfitI } from '@/lib/interfaces/outfit/outfit.interfaces';
 import { readOutfitsService } from '@/services/outfit/outfit.services';
 import Pagination from './components/pagination/pagination';
 
-export default async function OutfitsSection() {
+export default async function Outfits() {
   const outfits: OutfitI[] = await readOutfitsService();
 
   return (
