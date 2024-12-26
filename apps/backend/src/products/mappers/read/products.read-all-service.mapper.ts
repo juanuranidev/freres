@@ -20,7 +20,8 @@ export const productsReadAllServiceMapper = (products: Product[]): ProductReadAl
         ).filter(Boolean) || [],
         sizes: product.sizes?.map((productSize: ProductSize) => ({
             stock: productSize.stock,
-            name: productSize.size?.name
+            name: productSize.size?.name,
+            id: productSize.size?.id
         })).filter(Boolean) || [],
     }));
 }

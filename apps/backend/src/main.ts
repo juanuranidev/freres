@@ -38,11 +38,10 @@ async function bootstrap() {
 
   const PORT = AppModule.PORT;
 
-  const server = await app.listen(PORT, () => {
+  await app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
 
-  server.setTimeout(30000);
 }
 
 bootstrap();

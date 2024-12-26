@@ -93,7 +93,7 @@ export class ProductsRepository {
     }
 
     async readAll(productReadAllCriteriaDto: ProductReadAllCriteriaDto): Promise<Product[]> {
-        const { limit, offset, category, size } = productReadAllCriteriaDto;
+        const { limit, offset, category, size, title } = productReadAllCriteriaDto;
 
         const query: SelectQueryBuilder<Product> = this.productRepository.createQueryBuilder("product")
             .leftJoinAndSelect("product.images", "images")
@@ -110,11 +110,14 @@ export class ProductsRepository {
                 'product.slug',
                 'product.createdAt',
                 'product.updatedAt',
+                'images.id',
                 'images.url',
                 'categories.id',
                 'category.name',
                 'sizes.stock',
-                'size.name'
+                'size.name',
+                'size.id',
+                'sizes.id'
             ])
             .distinct(true);
 
@@ -126,6 +129,10 @@ export class ProductsRepository {
             query.andWhere("size.name = :size", { size });
         }
 
+        if (title) {
+            query.andWhere("product.title ILIKE :title", { title: `%${title}%` });
+        }
+
         query.orderBy('product.createdAt', 'DESC');
 
         if (offset) {
@@ -135,7 +142,6 @@ export class ProductsRepository {
         if (limit) {
             query.take(limit);
         }
-
         return await query.getMany();
     }
 

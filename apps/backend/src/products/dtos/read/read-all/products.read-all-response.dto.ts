@@ -6,6 +6,9 @@ class SizesDto {
 
     @ApiProperty()
     name: string;
+
+    @ApiProperty()
+    id: string;
 }
 
 export class ProductReadAllResponseDto {

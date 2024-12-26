@@ -23,4 +23,9 @@ export class ProductReadAllCriteriaDto {
     @IsOptional()
     @ApiProperty({ required: false })
     size: string;
+
+    @IsString()
+    @IsOptional()
+    @ApiProperty({ required: false })
+    title: string;
 }

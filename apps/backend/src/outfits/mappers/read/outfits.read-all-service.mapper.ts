@@ -4,12 +4,13 @@ import { OutfitReadAllResponseDto } from "outfits/dtos/read/read-all/outfits.rea
 export const outfitReadAllServiceMapper = (outfits: Outfit[]): OutfitReadAllResponseDto[] => {
     return outfits.map((outfit: Outfit) => ({
         id: outfit.id,
-        image_url: outfit.image_url,
+        imageUrl: outfit.image_url,
         products: outfit.outfits.map(op => ({
+            id: op.product.id,
             title: op.product.title,
             price: op.product.price,
             slug: op.product.slug,
-            image_urls: op.product.images?.map(image => image.url) || []
+            imageUrls: op.product.images?.map(image => image.url) || []
         }))
     }));
 }

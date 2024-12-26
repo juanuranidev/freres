@@ -5,6 +5,11 @@ export class OutfitProductsDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty()
+    id: string;
+
+    @IsString()
+    @IsNotEmpty()
+    @ApiProperty()
     title: string;
 
     @IsNumber()
@@ -20,7 +25,7 @@ export class OutfitProductsDto {
     @IsArray()
     @IsNotEmpty()
     @ApiProperty({ type: [String] })
-    image_urls: string[];
+    imageUrls: string[];
 }
 
 export class OutfitReadAllResponseDto {
@@ -32,7 +37,7 @@ export class OutfitReadAllResponseDto {
     @IsString()
     @IsNotEmpty()
     @ApiProperty()
-    image_url: string;
+    imageUrl: string;
 
     @IsArray()
     @IsNotEmpty()
