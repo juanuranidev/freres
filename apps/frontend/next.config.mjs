@@ -3,13 +3,13 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "freres.ar",
-        port: "",
-        pathname: "/wp-content/uploads/**",
-      },
-    ],
-  },
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/dhodvztdx/image/upload/**'
+      }
+    ]
+  }
 };
 
 export default nextConfig;
