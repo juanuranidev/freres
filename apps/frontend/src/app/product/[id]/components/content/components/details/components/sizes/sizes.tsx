@@ -14,8 +14,6 @@ export default function Sizes({
   selectedSize,
   setSelectedSize
 }: Props) {
-  // On each click of the buttons add this animation:
-  // transform-gpu backface-visibility-hidden group-hover/nav:translate-y-[0.0625rem]
   return (
     <div className="mb-6">
       <h3 className="uppercase text-xs font-medium mb-2">Talle</h3>
