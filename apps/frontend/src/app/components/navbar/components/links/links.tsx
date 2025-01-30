@@ -3,14 +3,14 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-type Props = {};
+interface Props = {};
 
-type MenuItem = {
+interface MenuItem = {
   label: string;
   href: string;
 };
 
-type MenuSection = {
+interface MenuSection = {
   title: string;
   items: MenuItem[];
 };
