@@ -9,6 +9,7 @@ interface ProductCartItem {
 
 interface ProductCartContextType {
   cart: ProductCartItem[];
+  handleClearCart: () => void;
   handleAddProductToCart: (product: ProductCartItem) => void;
   handleRemoveProductFromCart: (productId: string) => void;
 }
@@ -48,10 +49,15 @@ export function ProductCartProvider({ children }: ProductCartProviderProps) {
     );
   };
 
+  const handleClearCart = () => {
+    setCart([]);
+  };
+
   return (
     <ProductCartContext.Provider
       value={{
         cart,
+        handleClearCart,
         handleAddProductToCart,
         handleRemoveProductFromCart
       }}
