@@ -1,5 +1,3 @@
-"use server"
-
 import { AxiosResponse } from 'axios';
 import request from '@/services/request';
 import { OutfitI } from '@/lib/interfaces/outfit/outfit.interfaces';
