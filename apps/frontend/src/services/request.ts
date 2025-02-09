@@ -1,12 +1,12 @@
 import axios, { AxiosResponse, AxiosRequestHeaders } from "axios";
 import ENVS from "@/lib/shared/envs";
 
-interface Props<TData, TResponse> = {
+interface Props<TData, TResponse> {
     method: "GET" | "POST" | "PUT" | "DELETE";
     url: string;
-    params ?: Record<string, unknown>;
-    data ?: TData;
-    headers ?: AxiosRequestHeaders;
+    params?: Record<string, unknown>;
+    data?: TData;
+    headers?: AxiosRequestHeaders;
 };
 
 const request = async <TData = void, TResponse = void>({
