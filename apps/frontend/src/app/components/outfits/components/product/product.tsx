@@ -26,7 +26,9 @@ export default function Product({ product }: ProductProps) {
       </div>
       <div className="flex flex-col gap-2">
         <h3 className="text-sm font-medium">{product.title}</h3>
-        <p className="text-xs font-small">{formatProductPriceLib(product)}</p>
+        <p className="text-xs font-small">
+          {formatProductPriceLib(product.price)}
+        </p>
       </div>
     </Link>
   );
