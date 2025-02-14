@@ -3,17 +3,15 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-interface Props = {};
-
-interface MenuItem = {
+interface MenuItem {
   label: string;
   href: string;
-};
+}
 
-interface MenuSection = {
+interface MenuSection {
   title: string;
   items: MenuItem[];
-};
+}
 
 const shopMenuSections: MenuSection[] = [
   {
@@ -48,7 +46,7 @@ const shopMenuSections: MenuSection[] = [
   }
 ];
 
-export default function links({}: Props) {
+export default function Links() {
   const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
