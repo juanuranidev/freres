@@ -20,8 +20,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
         <AnnouncementBar />
-        <Navbar />
         <Providers>
+          <Navbar />
           <div>{children}</div>
         </Providers>
         <Footer />
