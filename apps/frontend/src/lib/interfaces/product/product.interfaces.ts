@@ -10,6 +10,8 @@ export interface Product {
     images: string[];
     sizes: ProductSize[];
     categories: string[];
+    quantity?: number;
+    size?: ProductSize;
 }
 
 export interface ProductSize {

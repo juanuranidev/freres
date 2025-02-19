@@ -1,17 +1,19 @@
-import { ProductSize } from '@/lib/interfaces/product/product.interfaces';
+import {
+  Product,
+  ProductSize
+} from '@/lib/interfaces/product/product.interfaces';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-interface ProductCartItem {
-  quantity: number;
-  size: ProductSize;
-  id: string;
-}
-
 interface ProductCartContextType {
-  cart: ProductCartItem[];
+  cart: Product[];
   handleClearCart: () => void;
-  handleAddProductToCart: (product: ProductCartItem) => void;
-  handleRemoveProductFromCart: (productId: string) => void;
+  handleAddProductToCart: (product: Product) => void;
+  handleRemoveProductFromCart: (productId: string, size: ProductSize) => void;
+  getCartTotal: () => number;
+  getFreeShippingRemaining: () => number;
+  isOpenCart: boolean;
+  handleOpenCart: () => void;
+  handleCloseCart: () => void;
 }
 
 interface ProductCartProviderProps {
@@ -23,9 +25,12 @@ const ProductCartContext = createContext<ProductCartContextType | undefined>(
 );
 
 export function ProductCartProvider({ children }: ProductCartProviderProps) {
-  const [cart, setCart] = useState<ProductCartItem[]>([]);
+  const FREE_SHIPPING_THRESHOLD = 140000;
 
-  const handleAddProductToCart = (product: ProductCartItem) => {
+  const [cart, setCart] = useState<Product[]>([]);
+  const [isOpenCart, setIsOpenCart] = useState<boolean>(false);
+
+  const handleAddProductToCart = (product: Product) => {
     const existingProduct = cart.find(
       (item) => item.id === product.id && item.size === product.size
     );
@@ -34,7 +39,10 @@ export function ProductCartProvider({ children }: ProductCartProviderProps) {
       setCart(
         cart.map((item) =>
           item.id === product.id && item.size === product.size
-            ? { ...item, quantity: item.quantity + product.quantity }
+            ? {
+                ...item,
+                quantity: (item.quantity ?? 0) + (product.quantity ?? 0)
+              }
             : item
         )
       );
@@ -43,14 +51,40 @@ export function ProductCartProvider({ children }: ProductCartProviderProps) {
     }
   };
 
-  const handleRemoveProductFromCart = (productId: string) => {
+  const handleRemoveProductFromCart = (
+    productId: string,
+    size: ProductSize
+  ) => {
     setCart(
-      cart.filter((product: ProductCartItem) => product.id !== productId)
+      cart.filter(
+        (product: Product) => product.id !== productId || product.size !== size
+      )
     );
   };
 
   const handleClearCart = () => {
     setCart([]);
+  };
+
+  const getCartTotal = () => {
+    return cart.reduce((total, item) => {
+      return total + item.price * (item.quantity || 1);
+    }, 0);
+  };
+
+  const getFreeShippingRemaining = () => {
+    const total = getCartTotal();
+    return total >= FREE_SHIPPING_THRESHOLD
+      ? 0
+      : FREE_SHIPPING_THRESHOLD - total;
+  };
+
+  const handleOpenCart = () => {
+    setIsOpenCart(true);
+  };
+
+  const handleCloseCart = () => {
+    setIsOpenCart(false);
   };
 
   return (
@@ -59,7 +93,12 @@ export function ProductCartProvider({ children }: ProductCartProviderProps) {
         cart,
         handleClearCart,
         handleAddProductToCart,
-        handleRemoveProductFromCart
+        handleRemoveProductFromCart,
+        getCartTotal,
+        getFreeShippingRemaining,
+        isOpenCart,
+        handleOpenCart,
+        handleCloseCart
       }}
     >
       {children}

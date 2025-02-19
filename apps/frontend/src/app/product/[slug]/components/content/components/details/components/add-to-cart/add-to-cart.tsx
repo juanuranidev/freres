@@ -21,7 +21,7 @@ export default function AddToCart({
   selectedSize,
   setSelectedSize
 }: Props) {
-  const { handleAddProductToCart } = useProductCartContext();
+  const { handleAddProductToCart, handleOpenCart } = useProductCartContext();
 
   const handleIncreaseAmount = () => {
     if (selectedAmount < (selectedSize?.stock ?? 0)) {
@@ -37,12 +37,13 @@ export default function AddToCart({
 
   const handleAddToCart = () => {
     handleAddProductToCart({
-      id: product.id,
-      size: selectedSize!,
-      quantity: selectedAmount
+      ...product,
+      quantity: selectedAmount,
+      size: selectedSize!
     });
 
     handleResetValues();
+    handleOpenCart();
   };
 
   const handleResetValues = () => {
