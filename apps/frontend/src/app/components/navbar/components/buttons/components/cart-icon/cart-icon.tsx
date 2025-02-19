@@ -1,19 +1,18 @@
 'use client';
 
-import { useProductCartContext } from '@/contexts/product/product-cart.context';
+import React from 'react';
 import { Icons } from '@/lib/shared/icons';
-import React, { useState } from 'react';
-import CartDrawer from './cart-drawer/cart-drawer';
+import CartDrawer from './components/cart-drawer/cart-drawer';
+import { useProductCartContext } from '@/contexts/product/product-cart.context';
 
 export default function CartIcon() {
-  const { cart } = useProductCartContext();
-  const [open, setOpen] = useState<boolean>(false);
+  const { cart, handleOpenCart } = useProductCartContext();
 
   return (
-    <>
+    <div>
       <button
         className="group p-2 relative rounded-full active:scale-95 transition-transform duration-150"
-        onClick={() => setOpen(true)}
+        onClick={handleOpenCart}
       >
         <span className="sr-only">Cart</span>
         <div className="absolute inset-0 rounded-full transition-colors group-hover:bg-gray-100" />
@@ -22,8 +21,7 @@ export default function CartIcon() {
           {cart.length}
         </span>
       </button>
-
-      <CartDrawer open={open} onClose={() => setOpen(false)} />
-    </>
+      <CartDrawer />
+    </div>
   );
 }
