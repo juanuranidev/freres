@@ -15,8 +15,9 @@ export class ProductReadAllCriteriaDto {
     @Transform(({ value }) => value ? parseInt(value) : undefined)
     offset: number;
 
-    @IsUUID()
+    @IsString()
     @IsOptional()
+    @ApiProperty({ required: false })
     category: string;
 
     @IsString()

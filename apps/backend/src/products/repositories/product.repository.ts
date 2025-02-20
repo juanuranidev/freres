@@ -92,7 +92,7 @@ export class ProductsRepository {
         }
     }
 
-    async readAll(productReadAllCriteriaDto: ProductReadAllCriteriaDto): Promise<Product[]> {
+    async readAll(productReadAllCriteriaDto: ProductReadAllCriteriaDto): Promise<[Product[], number]> {
         const { limit, offset, category, size, title } = productReadAllCriteriaDto;
 
         const query: SelectQueryBuilder<Product> = this.productRepository.createQueryBuilder("product")
@@ -122,7 +122,8 @@ export class ProductsRepository {
             .distinct(true);
 
         if (category) {
-            query.andWhere("category.id = :category", { category });
+            query.andWhere("category.name = :category", { category });
+            console.log(query.getQueryAndParameters());
         }
 
         if (size) {
@@ -142,7 +143,8 @@ export class ProductsRepository {
         if (limit) {
             query.take(limit);
         }
-        return await query.getMany();
+
+        return await query.getManyAndCount();
     }
 
     async readById(id: string): Promise<Product> {
