@@ -36,7 +36,7 @@ export default function CartProduct({ product }: Props) {
             src={product.images[0]}
           />
         </div>
-        <div className="flex-1 flex justify-between items-center">
+        <div className="flex-1 flex justify-between items-start">
           <div>
             <h3 className="font-bold">
               {product.title} x {product.quantity}

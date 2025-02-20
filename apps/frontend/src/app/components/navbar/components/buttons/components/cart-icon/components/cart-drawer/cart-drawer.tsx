@@ -15,13 +15,8 @@ import { useProductCartContext } from '@/contexts/product/product-cart.context';
 import { formatProductPriceLib } from '@/lib/helpers/product/product.helpers';
 
 export default function CartDrawer() {
-  const {
-    cart,
-    isOpenCart,
-    getCartTotal,
-    handleCloseCart,
-    getFreeShippingRemaining
-  } = useProductCartContext();
+  const { cart, isOpenCart, getCartTotal, handleCloseCart } =
+    useProductCartContext();
 
   const cartTotal: number = getCartTotal();
 
@@ -41,11 +36,9 @@ export default function CartDrawer() {
             </p>
           ) : (
             <div className="space-y-4">
-              <div>
-                <CartShippingInfo />
-              </div>
+              <CartShippingInfo />
               {cart.map((product: Product) => (
-                <CartProduct product={product} />
+                <CartProduct key={product.id} product={product} />
               ))}
             </div>
           )}

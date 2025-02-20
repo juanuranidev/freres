@@ -7,8 +7,9 @@ import { useIsOnTopOfPage } from '@/hooks/shared/use-is-on-top-of-page/use-is-on
 import { useDebounce } from '@/hooks/shared/use-debounce/use-debounce';
 import { SearchModal } from './components/search-modal';
 import { useReadProducts } from '@/hooks/products/use-read-products';
+import { PRODUCTS_CONSTANTS } from '@/lib/constants/products/products.constants';
 
-const DEBOUNCE_DELAY = 1000;
+const DEBOUNCE_DELAY = 500;
 
 export default function SearchIcon() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -21,8 +22,14 @@ export default function SearchIcon() {
   });
 
   const { products, isLoading } = useReadProducts({
-    title: debouncedValue
+    title: debouncedValue,
+    limit: 5
   });
+
+  const handleCloseSearchModal = () => {
+    setIsOpen(false);
+    setSearchInput('');
+  };
 
   const handleEscapePress = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -63,7 +70,7 @@ export default function SearchIcon() {
             isLoading={isLoading}
             searchInput={searchInput}
             isOnTopOfPage={isOnTopOfPage}
-            onClose={() => setIsOpen(false)}
+            onClose={handleCloseSearchModal}
             onSearchChange={(value) => setSearchInput(value)}
           />
         ) : null}

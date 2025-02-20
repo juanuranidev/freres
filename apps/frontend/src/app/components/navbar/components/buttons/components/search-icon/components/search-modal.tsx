@@ -6,6 +6,8 @@ import ProductCard from '@/components/shared/product-card/product-card';
 import ProductCardSkeleton from '@/components/shared/product-card/components/product-card-skeleton/product-card-skeleton';
 import { cn } from '@/lib/utils';
 import { ReactNode } from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface SearchModalProps {
   onClose: () => void;
@@ -37,20 +39,36 @@ export function SearchModal({
         <ProductCardSkeleton key={index} />
       ));
 
-    return products.map((product, index) => (
-      <ProductCard index={index} key={product.id} product={product} />
-    ));
+    return (
+      <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 w-full">
+          {products?.map((product, index) => (
+            <ProductCard index={index} key={product.id} product={product} />
+          ))}
+        </div>
+        <div className="flex flex-1 justify-center w-full">
+          <Link
+            href={`/shop${searchInput ? `?title=${searchInput}` : ''}`}
+            onClick={onClose}
+          >
+            <Button variant="default" className="mt-4">
+              Ver todos los resultados
+            </Button>
+          </Link>
+        </div>
+      </>
+    );
   };
 
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed inset-0 bg-white z-50"
-      role="dialog"
-      aria-modal="true"
       aria-labelledby="search-modal-title"
+      className="fixed inset-0 bg-white z-50"
     >
       <motion.div
         animate={{ y: 0 }}
@@ -81,11 +99,7 @@ export function SearchModal({
         </div>
       </motion.div>
       <div className="mx-auto p-4 overflow-y-auto h-[calc(100vh-56px)]">
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 w-full"
-          initial="hidden"
-          animate="show"
-        >
+        <motion.div initial="hidden" animate="show">
           {handleRenderContent()}
         </motion.div>
       </div>
