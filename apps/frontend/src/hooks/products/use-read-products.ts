@@ -7,6 +7,7 @@ interface UseReadProductsProps {
     category?: string;
     size?: string;
     title?: string;
+    limit?: number;
 }
 
 interface UseReadProductsReturn {
@@ -14,29 +15,50 @@ interface UseReadProductsReturn {
     isLoading: boolean;
     handleRefetchProducts: () => Promise<void>;
     handleIncrementLimit: () => Promise<void>;
-    hasMore: boolean;
+    hasMoreProducts: boolean;
+}
+
+interface Pagination {
+    total: number;
+    offset: number;
+    limit: number;
 }
 
 export const useReadProducts = ({
     category,
     size,
-    title
+    title,
+    limit,
 }: UseReadProductsProps): UseReadProductsReturn => {
     const [products, setProducts] = useState<Product[] | []>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [hasMore, setHasMore] = useState<boolean>(true);
+    const [hasMoreProducts, setHasMoreProducts] = useState<boolean>(true);
+    const [pagination, setPagination] = useState<Pagination>({
+        total: 0,
+        offset: 0,
+        limit: limit || PRODUCTS_CONSTANTS.DEFAULT_LIMIT
+    });
 
-    const handleReadProducts = async (limit?: number): Promise<void> => {
+    const handleReadProducts = async (isLoadingMore: boolean = false): Promise<void> => {
         setIsLoading(true);
         try {
-            const response: Product[] = await readAllProductsService({
+            const response: any = await readAllProductsService({
                 title,
-                limit: limit || PRODUCTS_CONSTANTS.DEFAULT_LIMIT,
+                limit: pagination.limit,
+                offset: isLoadingMore ? pagination.offset + pagination.limit : 0,
                 category,
                 size
             });
-            setHasMore(response.length >= (limit || PRODUCTS_CONSTANTS.DEFAULT_LIMIT));
-            setProducts(response);
+
+            setProducts(prevProducts =>
+                isLoadingMore ? [...prevProducts, ...response.data] : response.data
+            );
+
+            setPagination(response.pagination);
+            setHasMoreProducts(
+                response.pagination.total >
+                response.pagination.offset + response.pagination.limit
+            );
         } catch (error) {
             console.error(error);
         }
@@ -44,19 +66,24 @@ export const useReadProducts = ({
     }
 
     const handleRefetchProducts = async (): Promise<void> => {
+        setPagination(prev => ({ ...prev, offset: 0, limit: PRODUCTS_CONSTANTS.DEFAULT_LIMIT }));
         await handleReadProducts();
     }
 
     const handleIncrementLimit = async (): Promise<void> => {
-        if (!hasMore || isLoading) return;
-        const newLimit: number = PRODUCTS_CONSTANTS.DEFAULT_LIMIT + PRODUCTS_CONSTANTS.INCREMENT_AMOUNT_LIMIT;
+        if (!hasMoreProducts || isLoading) return;
 
-        await handleReadProducts(newLimit);
+        setPagination(prev => ({
+            ...prev,
+            limit: PRODUCTS_CONSTANTS.INCREMENT_AMOUNT_LIMIT
+        }));
+
+        await handleReadProducts(true);
     }
 
     useEffect(() => {
-        handleReadProducts();
-    }, [title]);
+        handleRefetchProducts();
+    }, [title, category, size]);
 
-    return { products, isLoading, handleRefetchProducts, handleIncrementLimit, hasMore };
+    return { products, isLoading, handleRefetchProducts, handleIncrementLimit, hasMoreProducts };
 }

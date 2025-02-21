@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
+  Product,
   Product as ProductInterface,
   ProductSize
 } from '@/lib/interfaces/product/product.interfaces';
@@ -16,15 +17,20 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, index }: ProductCardProps) {
   const [hoveredSize, setHoveredSize] = useState<string | null>(null);
-  const { handleAddProductToCart } = useProductCartContext();
+  const { handleAddProductToCart, handleOpenCart } = useProductCartContext();
 
-  const handleAddToCart = (size: ProductSize, e: React.MouseEvent) => {
+  const handleAddToCart = (
+    product: Product,
+    size: ProductSize,
+    e: React.MouseEvent
+  ) => {
     e.preventDefault();
     handleAddProductToCart({
-      id: product.id,
+      ...product,
       size: size,
       quantity: 1
     });
+    handleOpenCart();
   };
 
   return (
@@ -75,7 +81,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
                          }`}
               onMouseEnter={() => setHoveredSize(size.id)}
               onMouseLeave={() => setHoveredSize(null)}
-              onClick={(e) => size.stock > 0 && handleAddToCart(size, e)}
+              onClick={(e) =>
+                size.stock > 0 && handleAddToCart(product, size, e)
+              }
               disabled={size.stock === 0}
             >
               {size.name}

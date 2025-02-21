@@ -18,7 +18,7 @@ const container = {
 };
 
 export default function ProductGrid({ products }: ProductGridProps) {
-  const gridKey = products.map((p) => p.id).join('-');
+  const gridKey = products?.map((p) => p.id).join('-');
 
   return (
     <motion.div
