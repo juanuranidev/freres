@@ -10,13 +10,20 @@ interface ProductReadAllCriteriaDto {
     title?: string;
 }
 
+export interface ReadAllProductsResponse {
+    data: Product[];
+    total: number;
+    offset: number;
+    limit: number;
+}
+
 export const readAllProductsService = async ({
     limit,
     offset,
     category,
     size,
     title
-}: ProductReadAllCriteriaDto): Promise<Product[]> => {
+}: ProductReadAllCriteriaDto): Promise<ReadAllProductsResponse> => {
     try {
         const response: AxiosResponse = await request({
             method: 'GET',
