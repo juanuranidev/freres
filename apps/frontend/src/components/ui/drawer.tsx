@@ -13,6 +13,7 @@ const Drawer = ({
   direction?: 'bottom' | 'right';
 }) => (
   <DrawerPrimitive.Root
+    snapPoints={[]}
     direction={direction}
     shouldScaleBackground={shouldScaleBackground}
     {...props}
@@ -33,7 +34,8 @@ const DrawerOverlay = React.forwardRef<
   <DrawerPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 z-50 bg-black/80 transition-opacity',
+      'fixed inset-0 z-50 bg-black/80',
+      'transition-all duration-[10000ms]',
       'data-[state=open]:animate-in data-[state=closed]:animate-out',
       'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       'hover:cursor-pointer',
@@ -55,8 +57,10 @@ const DrawerContent = React.forwardRef<
       className={cn(
         'fixed inset-y-0 right-0 z-50 flex h-full w-3/4 flex-col border bg-background',
         'max-w-md',
-        'transform transition-transform duration-300 ease-in-out',
-        'translate-x-full data-[state=open]:translate-x-0',
+        'transition-[transform] duration-[10000ms] ease-in-out',
+        'translate-x-full',
+        'data-[state=open]:translate-x-0',
+        'data-[state=closed]:translate-x-full',
         className
       )}
       {...props}
