@@ -4,7 +4,7 @@ import { ProductsService } from 'products/services/products.service';
 import { ProductReadAllCriteriaDto } from 'products/dtos/read/read-all/products.read-all-criteria.dto';
 import { ApiResponse } from '@nestjs/swagger';
 import { ProductReadAllResponseDto } from 'products/dtos/read/read-all/products.read-all-response.dto';
-import { ProductReadByIdResponseDto } from 'products/dtos/read/read-by-id/products.read-by-id-response.dto';
+import { ProductReadBySlugResponseDto } from 'products/dtos/read/read-by-id/products.read-by-id-response.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -19,12 +19,12 @@ export class ProductsController {
         return this.productsService.readAll(productReadAllCriteriaDto);
     }
 
-    @Get(':id')
+    @Get(':slug')
     @ApiResponse({ status: 404, description: 'Product not found' })
-    @ApiResponse({ status: 200, description: 'Get product by id', type: ProductReadByIdResponseDto })
+    @ApiResponse({ status: 200, description: 'Get product by id', type: ProductReadBySlugResponseDto })
     @ApiResponse({ status: 500, description: 'Internal server error' })
-    readById(@Param('id', ParseUUIDPipe) id: string) {
-        return this.productsService.readById(id);
+    readBySlug(@Param('slug') slug: string) {
+        return this.productsService.readBySlug(slug);
     }
 
 }

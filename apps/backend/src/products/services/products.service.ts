@@ -2,7 +2,7 @@ import { Product } from 'products/entities/product.entity';
 import { ProductCreateManyFromSeedDto } from '../dtos/create/create-many-from-seed/products.create-many-from-seed.dto';
 import { ProductsRepository } from 'products/repositories/product.repository';
 import { ProductReadAllCriteriaDto } from 'products/dtos/read/read-all/products.read-all-criteria.dto';
-import { ProductReadByIdResponseDto } from 'products/dtos/read/read-by-id/products.read-by-id-response.dto';
+import { ProductReadBySlugResponseDto } from 'products/dtos/read/read-by-id/products.read-by-id-response.dto';
 import { productsReadAllServiceMapper } from 'products/mappers/read/products.read-all-service.mapper';
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { PaginatedProductsResponseDto } from 'products/dtos/read/read-all/paginated-products-response.dto';
@@ -50,12 +50,12 @@ export class ProductsService {
     }
   }
 
-  async readById(id: string): Promise<ProductReadByIdResponseDto> {
+  async readBySlug(slug: string): Promise<ProductReadBySlugResponseDto> {
     try {
-      const product: Product = await this.productRepository.readById(id);
+      const product: Product = await this.productRepository.readBySlug(slug);
 
       if (!product) {
-        throw new NotFoundException(`Product with id ${id} not found`);
+        throw new NotFoundException(`Product with slug ${slug} not found`);
       }
 
       return productsReadAllServiceMapper([product])[0];
@@ -63,8 +63,8 @@ export class ProductsService {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      this.logger.error(`Failed to read product by id: ${error.message}`);
-      throw new InternalServerErrorException('Failed to read product by id');
+      this.logger.error(`Failed to read product by slug: ${error.message}`);
+      throw new InternalServerErrorException('Failed to read product by slug');
     }
   }
 }

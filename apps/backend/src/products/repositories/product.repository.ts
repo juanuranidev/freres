@@ -147,9 +147,9 @@ export class ProductsRepository {
         return await query.getManyAndCount();
     }
 
-    async readById(id: string): Promise<Product> {
+    async readBySlug(slug: string): Promise<Product> {
         return await this.productRepository.findOne({
-            where: { id },
+            where: { slug },
             relations: ["images", "categories.category", "sizes", "sizes.size"],
         });
     }

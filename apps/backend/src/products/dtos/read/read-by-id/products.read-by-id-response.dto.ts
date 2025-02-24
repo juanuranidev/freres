@@ -11,7 +11,7 @@ class SizesDto {
     id: string;
 }
 
-export class ProductReadByIdResponseDto {
+export class ProductReadBySlugResponseDto {
     @ApiProperty()
     id: string;
 
