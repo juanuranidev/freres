@@ -30,8 +30,8 @@ export default function Stores() {
 
   return (
     <LoadScript googleMapsApiKey={ENVS.GOOGLE_MAP_API_KEY!}>
-      <div className="">
-        <div className="flex justify-start p-10">
+      <div className="pt-20">
+        <div className="flex justify-start pl-10 pb-10">
           <p className="text-2xl font-medium">Locales</p>
           <p className="text-2xl font-light mx-2">|</p>
           <p className="text-2xl font-light">Viamonte & Cabrera</p>

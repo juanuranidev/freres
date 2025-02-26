@@ -14,8 +14,8 @@ export default async function Outfits() {
   const outfits: OutfitI[] = await readOutfitsService();
 
   return (
-    <div className="relative overflow-hidden p-10">
-      <div className="flex justify-start pb-10">
+    <div className="relative overflow-hidden pt-20">
+      <div className="flex justify-start pl-10 pb-10">
         <p className="text-2xl font-medium">Inspiración</p>
         <p className="text-2xl font-light mx-2">|</p>
         <p className="text-2xl font-light"> Outfits</p>

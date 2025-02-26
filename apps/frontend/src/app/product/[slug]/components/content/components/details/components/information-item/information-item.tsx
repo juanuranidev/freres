@@ -8,7 +8,7 @@ import React from 'react';
 
 interface Props {
   title: string;
-  content: string;
+  content: string | React.ReactNode;
 }
 
 export default function InformationItem({ title, content }: Props) {

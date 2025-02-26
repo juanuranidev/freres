@@ -7,15 +7,17 @@ export default function Footer() {
     <footer aria-label="Sitio principal pie de página">
       <div className="border-b border-gray-200" />
       <div className="max-w-[90rem] mx-auto py-10 flex justify-between">
-        <section className="flex w-1/2">
-          <p className="text-sm w-1/2">
-            Frères es no conformarse con lo que existe, es crecer juntos
-            siguiendo nuestras propias expectativas.
+        <section className="flex w-full">
+          <p className="text-sm ">
+            En Frères celebramos la vida simple y auténtica. Diseñamos prendas
+            atemporales que combinan confort y estilo, acompañándote en cada
+            momento, desde el trabajo hasta el ocio. Somos una comunidad que
+            comparte valores, pasiones y el espíritu del Bon Vivant.
           </p>
         </section>
         <nav
           aria-label="Enlaces de ayuda"
-          className="flex flex-col items-start gap-3 w-1/4"
+          className="flex flex-col items-start gap-3 w-1/2"
         >
           <h2 className="text-sm font-bold">Ayuda</h2>
           <Link
@@ -28,7 +30,7 @@ export default function Footer() {
             WhatsApp
           </Link>
           <Link
-            href="/"
+            href="https://freres.ar/pages/preguntas-frecuentes"
             target="_blank"
             className="text-xs"
             aria-label="Ver preguntas frecuentes"
@@ -64,7 +66,7 @@ export default function Footer() {
           </Link>
         </nav>
         <nav
-          className="flex flex-col items-start gap-3 w-1/4"
+          className="flex flex-col items-start gap-3 w-1/2"
           aria-label="Redes sociales"
         >
           <h2 className="text-sm font-bold">Seguinos</h2>
@@ -89,7 +91,7 @@ export default function Footer() {
         </nav>
       </div>
       <div className="border-b border-gray-200" />
-      <div className="max-w-[90rem] mx-auto flex items-center gap-2 p-2">
+      <div className="max-w-[90rem] mx-auto flex items-center gap-2 py-4">
         <Image
           width={20}
           height={20}
@@ -97,9 +99,11 @@ export default function Footer() {
           src="https://res.cloudinary.com/dhodvztdx/image/upload/v1734492147/freres_new/freres-logo-white_nxln1s.svg"
           priority={false}
         />
-        <p className="text-xs text-gray-500">Frères Copyright © 2024</p>
+        <p className="text-xs text-gray-500">
+          Frères Copyright © 2025 - Página no oficial.
+        </p>
         <div className="flex gap-1">
-          <p className="text-xs text-gray-500">By</p>
+          <p className="text-xs text-gray-500">Creada by</p>
           <Link
             target="_blank"
             className="text-xs text-blue-500"

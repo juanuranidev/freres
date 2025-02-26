@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import Sizes from '@/app/product/[slug]/components/content/components/details/components/sizes/sizes';
 import InformationItem from '@/app/product/[slug]/components/content/components/details/components/information-item/information-item';
 import AddToCart from '@/app/product/[slug]/components/content/components/details/components/add-to-cart/add-to-cart';
+import Link from 'next/link';
 
 interface Props {
   product: Product;
@@ -66,10 +67,27 @@ export default function Details({ product }: Props) {
         setSelectedSize={setSelectedSize}
       />
       <div className="space-y-4">
+        <InformationItem title="DESCRIPCIÓN" content={product.description} />
         <InformationItem title="GUÍA DE TALLES" content="Content..." />
-        <InformationItem title="ENVÍOS" content="Content..." />
-        <InformationItem title="CAMBIOS Y DEVOLUCIONES" content="Content..." />
-        <InformationItem title="DESCRIPCIÓN" content="Content..." />
+        <InformationItem
+          title="ENVÍOS"
+          content="Realizamos envíos a todo el país a través de Shipnow. Además, podes retirar tu pedido gratis por nuestro Viamonte Store en CABA."
+        />
+        <InformationItem
+          title="CAMBIOS Y DEVOLUCIONES"
+          content={
+            <div>
+              Para cambios y devoluciones consultá nuestras{' '}
+              <Link
+                target="_blank"
+                className="text-blue-500"
+                href="https://freres.ar/pages/preguntas-frecuentes"
+              >
+                preguntas frecuentes
+              </Link>
+            </div>
+          }
+        />
       </div>
     </div>
   );
