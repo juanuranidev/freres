@@ -1,7 +1,8 @@
+'use client';
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import {
   Product,
   Product as ProductInterface,
@@ -12,10 +13,9 @@ import { useProductCartContext } from '@/contexts/product/product-cart.context';
 
 interface ProductCardProps {
   product: ProductInterface;
-  index: number;
 }
 
-export default function ProductCard({ product, index }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const [hoveredSize, setHoveredSize] = useState<string | null>(null);
   const { handleAddProductToCart, handleOpenCart } = useProductCartContext();
 
@@ -35,7 +35,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 
   return (
     <div className="relative group">
-      <Link href={`/product/${product.id}`}>
+      <Link href={`/product/${product.slug}`}>
         <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
           <Image
             fill

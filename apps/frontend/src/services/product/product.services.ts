@@ -43,14 +43,12 @@ export const readAllProductsService = async ({
     }
 }
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-export const readProductByIdService = async (id: string): Promise<Product> => {
-    await delay(2000);
+export const readProductBySlugService = async (slug: string): Promise<Product> => {
     const response: AxiosResponse = await request({
         method: 'GET',
-        url: `/products/${id}`
+        url: `/products/${slug}`
     })
 
     return response.data
 }
+
