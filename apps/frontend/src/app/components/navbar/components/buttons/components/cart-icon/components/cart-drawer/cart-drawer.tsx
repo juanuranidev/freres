@@ -13,6 +13,7 @@ import CartProduct from '@/app/components/navbar/components/buttons/components/c
 import CartShippingInfo from '@/app/components/navbar/components/buttons/components/cart-icon/components/cart-shipping-info/cart-shipping-info';
 import { useProductCartContext } from '@/contexts/product/product-cart.context';
 import { formatProductPriceLib } from '@/lib/helpers/product/product.helpers';
+import Link from 'next/link';
 
 export default function CartDrawer() {
   const { cart, isOpenCart, getCartTotal, handleCloseCart } =
@@ -50,9 +51,11 @@ export default function CartDrawer() {
               {formatProductPriceLib(cartTotal)}
             </span>
           </div>
-          <Button className="w-full" size="lg" disabled={cart.length === 0}>
-            Finalizar compra
-          </Button>
+          <Link href="/checkout" onClick={handleCloseCart}>
+            <Button className="w-full" size="lg" disabled={cart.length === 0}>
+              Finalizar compra
+            </Button>
+          </Link>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
