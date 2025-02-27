@@ -15,10 +15,10 @@ export default async function Outfits() {
 
   return (
     <div className="relative overflow-hidden pt-20">
-      <div className="flex justify-start pl-10 pb-10">
-        <p className="text-2xl font-medium">Inspiración</p>
+      <div className="flex justify-center pt-20 pb-10 text-center sm:justify-start sm:pl-10">
+        <p className="text-2xl font-medium">Novedades</p>
         <p className="text-2xl font-light mx-2">|</p>
-        <p className="text-2xl font-light"> Outfits</p>
+        <p className="text-2xl font-light">Outfits</p>
       </div>
       <Carousel className="w-full select-none">
         <CarouselContent className="">
@@ -26,8 +26,8 @@ export default async function Outfits() {
             <Outfit key={item.id} outfit={item} />
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-0" />
-        <CarouselNext className="right-0" />
+        <CarouselPrevious className="left-5 sm:left-10" />
+        <CarouselNext className="right-5 sm:right-10" />
         <Pagination totalSlides={outfits.length} />
       </Carousel>
     </div>

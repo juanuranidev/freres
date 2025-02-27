@@ -24,22 +24,24 @@ export default async function Home() {
         />
         <div className="absolute inset-0 bg-black/10" />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-8">
-          <h1 className="text-6xl font-medium text-white">Frères Beach Club</h1>
+          <h1 className="text-4xl font-medium text-white text-center sm:text-6xl">
+            Frères Beach Club
+          </h1>
           <Link
             href="/shop"
-            className="px-8 py-3 text-white border border-white hover:bg-white hover:text-black transition-colors duration-300 text-lg"
+            className="px-8 py-3 text-white border border-white hover:bg-white hover:text-black transition-colors duration-300 text-sm sm:text-xl"
           >
             Ver productos
           </Link>
         </div>
       </div>
       <div>
-        <div className="flex justify-start pt-20 pl-10 pb-10">
+        <div className="flex justify-center pt-20 pb-10 text-center sm:justify-start sm:pl-10">
           <p className="text-2xl font-medium">Novedades</p>
           <p className="text-2xl font-light mx-2">|</p>
           <p className="text-2xl font-light">Productos</p>
         </div>
-        <div className="max-w-[90rem] mx-auto px-2">
+        <div className="max-w-[90rem] mx-auto px-5 sm:px-10">
           <ProductsList products={products.data} isLoading={false} />
         </div>
       </div>
