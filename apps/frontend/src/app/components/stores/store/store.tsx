@@ -30,28 +30,32 @@ export default function Store({ store, isActive, onToggle }: StoreProps) {
   };
 
   return (
-    <div ref={ref} className="w-1/2 relative">
+    <div ref={ref} className="w-full md:w-1/2 relative h-[50vh] md:h-full">
       <Image fill alt={store.name} src={store.image} className="object-cover" />
       <div className="absolute inset-0 bg-black/60" />
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <motion.div
           initial={{ y: 0 }}
-          className="text-center"
+          className="text-center px-4"
           transition={{ duration: 0.3 }}
           animate={{
-            y: isActive ? -250 : 0
+            y: isActive ? -100 : 0
           }}
         >
-          <h2 className="text-3xl font-medium text-white">{store.name}</h2>
-          <div className="flex items-center">
-            <p className="text-white">{store.adress}</p>
+          <h2 className="text-2xl md:text-3xl font-medium text-white mb-2">
+            {store.name}
+          </h2>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+            <p className="text-sm md:text-base text-white text-center">
+              {store.adress}
+            </p>
             <Button
               onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.stopPropagation();
                 onToggle();
               }}
               variant="link"
-              className="text-white underline"
+              className="text-white underline text-sm md:text-base"
             >
               {isActive ? 'cerrar' : 'cómo llegar'}
             </Button>
@@ -65,7 +69,7 @@ export default function Store({ store, isActive, onToggle }: StoreProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
               initial={{ opacity: 0, y: 50 }}
-              className="absolute bottom-0 left-0 right-0 h-[60%] z-10"
+              className="absolute bottom-0 left-0 right-0 h-[50%] md:h-[60%] z-10"
             >
               <GoogleMap
                 mapContainerStyle={{
