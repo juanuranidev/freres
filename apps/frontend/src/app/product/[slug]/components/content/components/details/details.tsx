@@ -25,8 +25,8 @@ export default function Details({ product }: Props) {
   const [selectedAmount, setSelectedAmount] = useState<number>(1);
 
   return (
-    <div className="w-[30%] sticky top-20">
-      <h1 className="text-lg font-semibold mb-2">{product.title}</h1>
+    <div className="w-full lg:w-[30%] lg:sticky lg:top-20 px-4 lg:px-0">
+      <h1 className="text-xl lg:text-lg font-semibold mb-2">{product.title}</h1>
       <div className="mb-6">
         <p className="text-md">{formatProductPriceLib(product.price)}</p>
         <p className="text-xs font-medium">
@@ -38,8 +38,8 @@ export default function Details({ product }: Props) {
       </div>
       <div className="mb-6">
         <h3 className="uppercase text-xs font-medium mb-2">Colores</h3>
-        <div className="flex gap-2">
-          <button className="w-16 h-18 border hover:border-black">
+        <div className="flex gap-2 overflow-x-auto pb-2 lg:pb-0">
+          <button className="min-w-[4rem] w-16 h-18 border hover:border-black flex-shrink-0">
             <img
               src={product.images[0]}
               alt="Color option"

@@ -13,12 +13,12 @@ export function Images({ images }: ImagesProps) {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 w-[70%]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:w-full lg:w-[70%]">
         {images.map((image: string, index: number) => (
           <motion.button
             key={index}
             layoutId={`product-image-${image}`}
-            className="relative overflow-hidden cursor-pointer"
+            className="relative overflow-hidden cursor-pointer aspect-square"
             onClick={() => setSelectedImage(image)}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           >
